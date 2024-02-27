@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchButton = document.getElementById('search');
   const weatherInfoElement = document.getElementById('weather-info');
 
+  locationInput.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+      searchButton.click();
+    }
+  });
+
   searchButton.addEventListener('click', async () => {
     const city = locationInput.value.trim();
 
