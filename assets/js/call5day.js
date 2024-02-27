@@ -78,7 +78,7 @@ function renderWeather(weatherData, weatherInfoElement) {
 
     return `
       <div class="weather-item">
-        <div class="date">${day} ${time}</div>
+      <div class="date">${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${day} ${time}</div>
         <div class="icon"><img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="${weatherDescription}"></div>
         <div class="temperature">${temperature}°C</div>
         <div class="description">${weatherDescription}</div>
