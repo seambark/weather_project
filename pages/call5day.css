@@ -1,63 +1,62 @@
 body {
     font-family: sans-serif;
     margin: 20px;
-  }
-  
-  h1 {
+}
+
+h1 {
     text-align: center;
-  }
-  
-  .container {
+}
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  #location {
+}
+
+#location {
     width: 200px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-  }
-  
-  #search {
+}
+
+#search {
     padding: 10px 20px;
     background-color: #000;
     color: #fff;
     border: none;
     cursor: pointer;
-  }
-  
-  #weather-info {
+}
+
+#weather-info {
     width: 80%;
     margin-top: 20px;
     padding: 20px;
     border: 1px solid #ccc;
-  }
-  
-  .weather-item {
+}
+
+.weather-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-  }
-  
-  .date {
+}
+
+.date {
     width: 20%;
-  }
-  
-  .icon {
-    width: 20%;
-    text-align: center;
-  }
-  
-  .temperature {
+}
+
+.icon {
     width: 20%;
     text-align: center;
-  }
-  
-  .description {
+}
+
+.temperature {
+    width: 20%;
+    text-align: center;
+}
+
+.description {
     width: 40%;
-  }
-  
+}
