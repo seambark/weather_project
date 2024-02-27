@@ -1,4 +1,3 @@
-const OPEN_WEATHER_API_KEY = '62bc430c2e97afc5954eee5d617b781e';
 
 document.addEventListener('DOMContentLoaded', function () {
   const locationInput = document.getElementById('location');
