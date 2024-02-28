@@ -1,0 +1,12 @@
+.air-pollution-value {
+  font-size: 2em;
+}
+
+.air-pollution-icon img {
+  width: 10%;
+  height: 10%;
+}
+
+.air-pollution {
+  margin-top : 1em;
+}
