@@ -1,0 +1,36 @@
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.weatherimg{
+width: 800px;
+height: 350px;
+padding-top: 50px;
+
+}
+
+.weather-container {
+    position: relative;
+    display: inline-block; 
+}
+
+.weather-text {
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 5px; 
+    font-size: 14px; 
+    color: #000; 
+}
+
+.sectionterm{
+    padding-top: 50px;
+}
+
+.clothessection{
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -4,9 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/style/common.css">
+    <style>
+        img {
+            image-rendering: -moz-crisp-edges; /* firefox */
+            image-rendering: -o-crisp-edges; /* opera */
+            image-rendering: -webkit-optimize-contrast; /* chrome */
+            image-rendering: crisp-edges;
+        }
+        .wrap {
+            width : 1280px ;
+            margin: 0 auto;
+            
+        }
+
+        h3 {
+            margin: 20px 0 35px;
+            font-size: 25px;
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            font-size: 18px;
+            background: #fff;
+        }
+
+        .swiper-pagination {
+            top : 17px !important;
+            bottom: inherit;
+            text-align: right;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(55,55,55,0.8);
+            border-radius: 50%;
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            
+        }
+        .swiper-pagination-current {
+            font-weight: bold;
+        }
+
+        .info {
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+        .info .img {
+            display: block;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+        .info .img img {
+            width: 100%;
+        }
+        .info .txt {
+            display: block;
+            min-height: 181px;
+            padding: 20px 15px 15px;
+            line-height: 1.4rem;
+        }
+        .info .txt .title {
+            min-height: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .info .txt dd {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 7px;
+            color: #7e7e7e;
+            font-size: 0;
+            word-spacing: -0.04em;
+        }
+        .info .txt dd:last-child {
+            margin-bottom: 0;
+        }
+        .info .txt dd span {
+            font-size: 1rem;
+            
+            vertical-align: top;
+        }
+        .info .txt .subtitle {
+            flex-shrink: 0;
+            width: 45px;
+            font-weight: bold;
+        }
+        .info .txt .description {
+            flex-grow: 1;
+        }
+
+        @media screen and (max-width: 1023px) {
+            .wrap {
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+            font-size: 15px;
+            }
+            .wrap {
+                width: 100%;
+                min-width: 360px;
+                padding: 0 15px;
+            }
+            .info .img {
+                display: block;
+                width: 100%;
+                height: 230px;
+            }
+            .info .txt dd {
+                flex-direction: column;
+            }
+            .info .txt .subtitle {
+                margin-bottom: 5px;
+            }
+            .swiper-pagination {
+                width: auto;
+                left: inherit;
+                right: 17px;
+                padding: 4px 8px;
+                border-radius: 20px;
+                background-color: rgba(0,0,0,0.4);
+                color: #fff;
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>한 페이지에 모든 내용이 들어가기 때문에, 깃 커밋할때 충돌나지 않도록 pages폴더에 자기 기능 작업을 한 후에 합치는게 좋을 것 같습니다.</p>
-    <p>기능에 맞춘 이름을가진 파일을 만들고 각각 작업해 주세요.</p>
+    <div class="wrap">
+        <h3>축제</h3>
+        <div class="swiper festival_area">
+            <ul id="festivial_list" class="swiper-wrapper">
+            </ul>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/assets/js/festival.js"></script>
 </body>
 </html>
