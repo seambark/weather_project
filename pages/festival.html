@@ -16,7 +16,6 @@
         .wrap {
             width : 1280px ;
             margin: 0 auto;
-            
         }
 
         h3 {
@@ -34,14 +33,21 @@
         }
 
         .swiper-pagination {
-            top : 17px !important;
+            top : -35px !important;
+            right: 0;
+            left: inherit;
             bottom: inherit;
+            width: auto;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background-color: rgba(0,0,0,0.4);
+            color: #fff;
             text-align: right;
         }
         .swiper-button-next,
         .swiper-button-prev {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: rgba(55,55,55,0.8);
             border-radius: 50%;
         }
@@ -57,26 +63,38 @@
         }
 
         .info {
-            border: 1px solid #ddd;
             overflow: hidden;
+            display: flex;
+            padding: 20px 15px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 200px;
         }
         .info .img {
-            display: block;
-            width: 100%;
-            height: 300px;
             overflow: hidden;
+            display: block;
+            flex-shrink: 0;
+            width: 93px;
+            height: 135px;
+            border-radius: 5px;
         }
         .info .img img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .info .txt {
-            display: block;
-            min-height: 181px;
-            padding: 20px 15px 15px;
+            display: block; 
+            flex-grow: 1;           
+            padding-right: 10px;
             line-height: 1.4rem;
         }
         .info .txt .title {
-            min-height: 40px;
+            display: flex;
+            align-items: center;
+            min-height: 71px;
+            padding-top: 20px;
+            margin-top: -20px;
             margin-bottom: 15px;
             padding-bottom: 5px;
             border-bottom: 1px solid #ddd;
@@ -106,6 +124,16 @@
         .info .txt .description {
             flex-grow: 1;
         }
+        .no_data {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            padding: 25px 20px;
+            border-radius: 5px;
+            background-color: #eee;
+            color: #7e7e7e;
+        }
 
         @media screen and (max-width: 1023px) {
             .wrap {
@@ -123,25 +151,9 @@
                 min-width: 360px;
                 padding: 0 15px;
             }
-            .info .img {
-                display: block;
-                width: 100%;
-                height: 230px;
-            }
-            .info .txt dd {
-                flex-direction: column;
-            }
-            .info .txt .subtitle {
-                margin-bottom: 5px;
-            }
-            .swiper-pagination {
-                width: auto;
-                left: inherit;
-                right: 17px;
-                padding: 4px 8px;
-                border-radius: 20px;
-                background-color: rgba(0,0,0,0.4);
-                color: #fff;
+            
+            .swiper {
+                overflow: inherit;
             }
             .swiper-button-next,
             .swiper-button-prev {
