@@ -3,52 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>오늘의 날씨</title>
-    <!-- 부트스트랩 cbn주소 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- 폰트어썸 cbn주소 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/style/common.css">
-    <link rel="stylesheet" href="/assets/style/main.css">
+    <!-- <link rel="stylesheet" href="/assets/style/main.css"> -->
 
 </head>
 <body>
-
-    <div class="main container">
-    <!-- 검색창 -->
-
-    <div class="input-area">
-
-    <i class="fa-solid fa-magnifying-glass-location search_icon"></i><input type="text" class="search_bar" id="InputBar" placeholder="오늘의 날씨를 알고싶은 지역을 입력해주세요.">
-<button class="search_btn">검색</button>
-</div>
-
+<div class="wrap">
+    <header class="header">
+        <button type="button" class="open_search">검색창 열기</button>
+        <div class="input_area">
+            <input type="text" class="search_bar" id="location" placeholder="오늘의 날씨를 알고싶은 지역을 입력해주세요.">
+            <button class="search_btn" id="search">검색</button>
+        </div>
+    </header>
+    <div class="banner">
         <!--현재의 날씨-->
-        <div class="present_weather">
-            <h1>날씨 홈페이지 작업</h1>
+        <div class="present_weather few_clouds">
+            <!-- <h1>날씨 홈페이지 작업</h1> -->
+            <div class="action_space">
+                <span class="icon_sun">태양</span>
+                <span class="icon_cloud">구름</span>
+                <span class="icon_cloud fixed">구름</span>
+            </div>
+            <div class="action_txt">
+                <span class="day_weather">
+                    <strong class="temp">7.01°C</strong>
+                    <span class="temp_words">Few clouds</span>
+                </span>
+                <div class="pollution fair on">
+                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                    <span class="status">Fair</span>
+                </div>
+            </div>
         </div>
-
-        <div class="part-34">
-            <!--대기오염-->
-            <div class="Air_pollution ">대기 오염</div>
-
-            <!--5일 날씨-->
-            <div class="day5_weather ">5일 날씨</div>
-        </div>
-
-        <!--옷차림 추천-->
-        <div class="Clothes">옷차림 추천 </div>
-
-        <!--축제-->
-        <div class="Festival">축제</div>
     </div>
-</body>
-</html>
-</div>
+    <div class="main">
+        <section class="section">
+            <div class="inner">
+                <h2>대기오염</h2>
+                <div class="air_pollution" id="air-pollution-info">
+                <div class="pollution good">
+                    <span class="status">Good</span>
+                </div>
+                <div class="pollution fair on">
+                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                    <span class="status">Fair</span>
+                </div>
+                <div class="pollution moderate">
+                    <span class="status">Moderate</span>
+                </div>
+                <div class="pollution poor">
+                    <span class="status">Poor</span>
+                </div>
+                <div class="pollution very_poor">
+                    <span class="status">Very Poor</span>
+                </div>
+                </div>
+            </div>
+            <div class="inner">
+                <h2>5일 날씨</h2>
+                <div class="weather_list">
+                <ul id="weather-info">
+                    <li class="weather_item">
+                    <span class="date">Mon</span>
+                    <div class="detail">
+                        <div class="icon">
+                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        </div>
+                        <p class="temperature"><span>7.01</span></p>
+                        <p class="description">overcast clouds</p>
+                    </div>
+                    </li>
+                    <li class="weather_item">
+                    <span class="date">Tue</span>
+                    <div class="detail">
+                        <div class="icon">
+                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        </div>
+                        <p class="temperature">
+                            <span>-3.58</span>
+                            <span>7.01</span>
+                        </p>
+                        <p class="description">overcast clouds</p>
+                    </div>
+                    </li>
+                    <li class="weather_item">
+                    <span class="date">Wed</span>
+                    <div class="detail">
+                        <div class="icon">
+                            <img src="/assets/img/few_clouds.png" alt="few_clouds">
+                        </div>
+                        <p class="temperature">
+                            <span>-3.58</span>
+                            <span>7.01</span>
+                        </p>
+                        <p class="description">few clouds</p>
+                    </div>
+                    </li>
+                    <li class="weather_item">
+                    <span class="date">Thu</span>
+                    <div class="detail">
+                        <div class="icon">
+                            <img src="/assets/img/rain.png" alt="rain">
+                        </div>
+                        <p class="temperature">
+                            <span>-3.58</span>
+                            <span>7.01</span>
+                        </p>
+                        <p class="description">rain</p>
+                    </div>
+                    </li>
+                    <li class="weather_item">
+                    <span class="date">Fri</span>
+                    <div class="detail">
+                        <div class="icon">
+                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        </div>
+                        <p class="temperature">
+                            <span>-3.58</span>
+                            <span>7.01</span>
+                        </p>
+                        <p class="description">clear sky</p>
+                    </div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="inner">
+                <h2>옷차림 추천</h2>
+                <div class="clothes">
+                    옷차림 내용
+                </div>
+            </div>
+        </section>
+        <section class="section m_pull">
+            <div class="inner">
+                <h2>축제</h2>
+                <div class="swiper festival">
+                    <ul id="festivial_list" class="swiper-wrapper">
+                    </ul>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/api_key.js"></script>
-    <script src="/assets/js/index.js"></script>
+    </div>
+    <footer>
+        <div class="inner">
+            <p>Product Owner 이아리 |  Surum Master 박샘 | Developer 오승택, 김범준, 김예빈</p>
+            <ul>
+                <li>macrovector / pikisuperstar  출처 Freepik</li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/api_key.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/festival.js"></script>
+<script>
+    let openSearch = document.querySelector(".open_search");
+    let header = document.querySelector(".header");
+    openSearch.addEventListener("click", function(){
+        header.classList.toggle("active");
+    })
+</script>
 </body>
 </html>

@@ -119,7 +119,7 @@ let keyword = '인천';
 
 let festivialListTag = document.querySelector('#festivial_list');
 
-var swiper = new Swiper(".festival_area", {
+var swiper = new Swiper(".festival", {
     slidesPerView: 1,
     spaceBetween: 15,
     navigation: {
