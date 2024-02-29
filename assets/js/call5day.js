@@ -80,14 +80,14 @@ function aggregateDailyData(list) {
   // Process each weather data entry
   list.forEach(item => {
     const date = item.dt_txt.split(' ')[0];
-    const time = item.dt_txt.split(' ')[1];
 
     // Create a new entry if one does not exist for this date
     if (!dailyData[date]) {
       dailyData[date] = {
         temps: [],
-        weatherDescription: null,
-        weatherIcon: null,
+        weatherDescriptions: [], // Changed to array to collect all descriptions
+        weatherIcons: [], // Changed to array to collect all icons
+        weatherIconsImg: [],
         windSpeeds: [],
         windDirections: [],
         cloudinessValues: [],
@@ -103,15 +103,11 @@ function aggregateDailyData(list) {
     dailyData[date].cloudinessValues.push(item.clouds.all);
     dailyData[date].humidityValues.push(item.main.humidity);
     dailyData[date].pressureValues.push(item.main.pressure);
-
-    // If the time is 9 AM, use this entry's weather description and icon
-    if (time === "09:00:00") {
-      dailyData[date].weatherDescription = item.weather[0].description;
-      dailyData[date].weatherIcon = item.weather[0].icon;
-    }
+    dailyData[date].weatherDescriptions.push(item.weather[0].description); // Collect all descriptions
+    dailyData[date].weatherIcons.push(item.weather[0].icon); // Collect all icons
   });
 
-  // Calculate the average, high, and low values for each day
+  // Calculate the average, high, and low values for each day and find the most frequent description and icon
   Object.keys(dailyData).forEach(date => {
     const data = dailyData[date];
     const total = (array) => array.reduce((sum, x) => sum + x, 0);
@@ -123,10 +119,39 @@ function aggregateDailyData(list) {
     data.avgCloudiness = total(data.cloudinessValues) / data.cloudinessValues.length;
     data.avgHumidity = total(data.humidityValues) / data.humidityValues.length;
     data.avgPressure = total(data.pressureValues) / data.pressureValues.length;
-  });
+
+    // Determine the most frequent weather description and icon
+    const mostFrequent = (array) => array.sort((a, b) =>
+      array.filter(v => v === a).length
+      - array.filter(v => v === b).length)
+      .pop();
+    data.weatherDescription = mostFrequent(data.weatherDescriptions);
+    data.weatherIcon = mostFrequent(data.weatherIcons);
+    if (data.weatherDescription === 'clear sky') {
+      data.weatherIconImg = 'clear_sky';
+    } else if (data.weatherDescription === 'few clouds') {
+      data.weatherIconImg = 'few_clouds';
+    } else if (data.weatherDescription === 'scattered clouds') {
+      data.weatherIconImg = 'scattered_clouds';
+    } else if (data.weatherDescription === 'broken clouds' | data.weatherDescription === 'overcast clouds') {
+      data.weatherIconImg = 'broken_clouds';
+    } else if (data.weatherDescription === 'shower rain') {
+      data.weatherIconImg = 'shower_rain';
+    } else if (data.weatherDescription === 'rain' | data.weatherDescription === 'light rain') {
+      data.weatherIconImg = 'rain';
+    } else if (data.weatherDescription === 'thunderstorm') {
+      data.weatherIconImg = 'thunderstorm';
+    } else if (data.weatherDescription === 'snow') {
+      data.weatherIconImg = 'snow';
+    } else if (data.weatherDescription === 'mist') {
+      data.weatherIconImg = 'mist';
+    }        
+
+    });
 
   return dailyData;
 }
+
 
 function renderWeather(weatherData, weatherInfoElement) {
   const dailyData = aggregateDailyData(weatherData.list);
@@ -139,9 +164,9 @@ function renderWeather(weatherData, weatherInfoElement) {
       <div class="weather-item">
         <div class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
         <div class="icon">
-          <img src="https://openweathermap.org/img/wn/${data.weatherIcon}@2x.png" alt="${data.weatherDescription}">
+          <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
         </div>
-        <div class="temperature">High: ${data.highTemp.toFixed(2)}°C / Low: ${data.lowTemp.toFixed(2)}°C</div>
+        <div class="temperature">${data.highTemp.toFixed(2)}°C / ${data.lowTemp.toFixed(2)}°C</div>
         <div class="description">${data.weatherDescription}</div>
         <div class="wind">Wind: ${data.avgWindSpeed.toFixed(2)} m/s ${data.avgWindDirection.toFixed(0)}°</div>
         <div class="cloudiness">Cloudiness: ${data.avgCloudiness.toFixed(0)}%</div>
