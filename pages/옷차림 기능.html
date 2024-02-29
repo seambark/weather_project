@@ -11,13 +11,14 @@
 <body>
     
 <section class="">
-    <input type="text" id="locationInput" placeholder="지역을 입력하세요">
-    <button id="searchButton">search</button>
+    <input type="text" id="location" placeholder="지역을 입력하세요">
+    <button id="searchButton" onclick="locationinput()">search</button>
+    <div> </div>
 </section>
 
 <section class="container flex">
     <div id="current" class="weather-container">
-        <img class="weatherimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROK9cR9q85lajcx4zA0ZutTJtJYM-cdQ-kmA&usqp=CAU">        
+        
         <div class="weather-text">
         <div>지역 : ${weather.name}</div>
         <div>현재기온: ${c.toFixed(2)} 도</div>
