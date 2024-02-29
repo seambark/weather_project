@@ -13,7 +13,7 @@
             image-rendering: -webkit-optimize-contrast; /* chrome */
             image-rendering: crisp-edges;
         }
-        .wrap {
+        .content, .visual {
             width : 1280px ;
             margin: 0 auto;
         }
@@ -135,10 +135,343 @@
             color: #7e7e7e;
         }
 
-        @media screen and (max-width: 1023px) {
-            .wrap {
+        
+    </style>
+
+<style>
+    h2 {
+      margin: 25px 0 20px;
+      font-size: 24px;
+    }
+    .banner {
+        height: 500px;
+        background-color: #aacbff;
+    }
+    .visual {
+        position: relative;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position-x: -500px;
+        transition: all 5s;
+    }
+    .few_clouds {
+        background-image: url("../assets/img/bg_few_clouds.png");
+        background-position-x: 0;
+    }
+    .day_weather {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%,-40%);
+        color: #353535;
+    }
+    .day_weather .temp {
+        display: block;
+        font-size: 80px;
+        font-weight: bold;
+    }
+    .day_weather .temp_words {
+        font-size: 40px;
+    }
+    .visual span[class*="icon_"] {
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        font-size: 0;
+        color: transparent;
+        position: absolute;
+    }
+    .action_txt {
+        position: relative;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+    }
+    .action_space {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+    }
+    .icon_cloud {
+        top: 0;
+        width: 350px;
+        height: 350px;
+        background-image: url("../assets/img/scattered_clouds.png");
+    }
+    .icon_cloud.fixed {
+        transform: translateX(177%) scale(-1.2, 1.2);
+        animation: 0.8s linear infinite upDownCloud;
+        opacity: 0.8;
+        z-index: 10;
+    }
+    .icon_cloud:not(.fixed) {
+        /* transform: translate(183%, -5%) scale(-1.2, 1.2); */
+        top: -90px;
+        animation: 40s infinite ease-in-out moveCloud,
+        1s infinite linear moveCloud2;
+        z-index: 0;
+        /* transition: top 1s;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 0.9, 0.3); */
+    }
+    .icon_sun {
+        top: 0;
+        width: 350px;
+        height: 350px;
+        transform: translate(148%, -12%);
+        background-image: url("../assets/img/clear_sky.png");
+        animation: 1.5s linear infinite upDown;
+        z-index: 10;
+    }
+
+    @keyframes moveSun {
+        0% { 
+            transform: translate(-50%, -12%);
+        }
+        100% { 
+            transform: translate(148%, -12%);
+        } 
+    }
+    @keyframes moveCloud {
+        0% { 
+            opacity: 0.7;
+            transform: translateX(0) scale(0.7);
+        }
+        50% {
+            transform: translateX(300%) scale(0.7);
+            opacity: 0;
+        } 
+        100% {
+            transform: translateX(0) scale(0.7);
+            opacity: 0.7;
+        } 
+    }
+    @keyframes moveCloud2 {
+        0%,50%,100% { 
+            top: -90px;
+        }
+        25% {
+            top: -92px;
+        }
+        75% {
+            top: -88px;
+        }
+    }
+    @keyframes upDown {
+        0% { 
+            transform: translate(148%, -12%);
+        }
+        50% {
+            transform: translate(148%, -11%);
+        }
+        100% { 
+            transform: translate(148%, -12%);
+        } 
+    }
+    @keyframes upDownCloud {
+        0% { 
+            top: 0;
+        }
+        25% {
+            top: -1px;
+        }
+        50% {
+            top: 0;
+        }
+        75% {
+            top: 1px;
+        }
+        100% { 
+           top: 0;
+        } 
+    }
+    .section {
+      margin-top: 30px;
+      display: flex;
+    }
+    .section .inner:not(:only-child):first-child {
+      flex-shrink: 0;
+      width: 30%;
+      padding-right: 25px;
+    }
+    .section .inner {
+        overflow: hidden;
+      flex-grow: 1;
+    }
+    .weather_list ul {
+      display: flex;
+
+    }
+    .weather_list .weather_item:not(:last-child) {
+      border-right: 2px solid #fff;
+    }
+    .weather_item {
+      padding: 20px 10px 20px;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    .weather_item .detail {
+      margin-top: 15px;
+    }
+    .weather_item .icon img {
+      width: 50%;
+    }
+    .weather_item .date {
+      display: block;
+      font-size: 23px;
+      font-weight: bold;
+    }
+    .weather_item .temperature {
+      word-spacing: -0.025em;
+      font-size: 15px;
+    }
+    .weather_item .temperature span {
+      position: relative;
+      color: #676358;
+      font-weight: bold;
+    }
+    .weather_item .temperature span::after {
+      content: '°C';
+      display: inline-block;
+      margin-left: 5px;
+      color: #7c7c7c;
+      font-size: 12px;
+    }
+    .weather_item .temperature span:not(:only-child):last-child {
+      padding-left: 10px;
+    }
+    .weather_item .temperature span:not(:only-child):last-child::before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-block;
+      content: '/';
+      margin-right: 5px;
+      font-size: 12px;
+      color: #7c7c7c;
+
+    }
+    .weather_item .description {
+      margin-top: 7px;
+      color: #a2a2a2;
+      font-size: 13px;
+    }
+    .banner .pollution {
+        display: none;
+    }
+    .pollution {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      padding: 10px 50px 10px 10px;
+      background-color: #dadada;
+      font-size: 24px;
+      color: #fff;
+      font-weight: bold;
+      filter: grayscale(1);
+    }
+    .pollution.on {
+      filter: grayscale(0);
+    }
+    .pollution .unit {
+      font-size: 20px;
+      font-weight: normal;
+    }
+    .air_pollution .icon img {
+      width: 50%;
+    }
+    .pollution::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+    }
+    .pollution .status {
+      font-size: 20px;
+      opacity: 0.8;
+    }
+    .pollution.good {
+      background-color: #aacbff;
+    }
+    .pollution.good::after {
+      background-image: url("../assets/img/airPollution_good\ .png");
+    }
+    .pollution.fair {
+      background-color: #c5d149;
+    }
+    .pollution.fair::after {
+      background-image: url("../assets/img/airPollution_fair.png");
+    }
+    .pollution.moderate {
+      background-color: #ffcf58;
+    }
+    .pollution.moderate::after {
+      background-image: url("../assets/img/airPollution_moderate.png");
+    }
+    .pollution.poor {
+      background-color: #ffa158;
+    }
+    .pollution.poor::after {
+      background-image: url("../assets/img/airPollution_poor.png");
+    }
+    .pollution.very_poor {
+      background-color: #ff6d58;
+    }
+    .pollution.very_poor::after {
+      background-image: url("../assets/img/airPollution_very_poor.png");
+    }
+
+    @media screen and (max-width: 1023px) {
+            .content {
                 width: 100%;
                 padding: 0 20px;
+            }
+            .weather_list ul {
+                flex-direction: column;
+            }
+            .weather_item {
+                display: flex;
+                height: 50px;
+                padding: 0 20px;
+                align-items: center;
+                justify-content: space-between;
+                border-left: 0;
+                border-bottom: 2px solid #fff;
+            }
+            .weather_item:last-child {
+                border-bottom: 0;
+            }
+            .weather_item .date {
+                font-size: 20px;
+                text-align: left;
+            }
+            .weather_item .detail {
+                display: flex;
+                align-items: center;
+                margin-top: 0;
+                width: 65%;
+            }
+            .weather_item .icon {
+                height: 50px;
+                width: 50px;
+            }
+            .weather_item .icon img {
+                width: 100%;
+                height: auto;
+            }
+            .weather_item .description {
+                margin-left: auto;
+                margin-top: 0;
             }
         }
 
@@ -146,12 +479,56 @@
             body {
             font-size: 15px;
             }
-            .wrap {
+            .content {
                 width: 100%;
                 min-width: 360px;
                 padding: 0 15px;
             }
-            
+            .section {
+                flex-direction: column;
+            }
+            .section .inner:not(:only-child):first-child {
+                width: 100%;
+                padding-right: 0;
+            }
+            .pollution {
+                display: none;
+            }
+            .banner {
+                position: relative;
+            }
+            .banner .pollution {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: absolute;
+                right: 15px;
+                bottom: 20px;
+                min-width: 175px;
+                padding-left: 15px;
+                padding-right: 37px;
+                border-radius: 25px;
+                background-color: rgba(255, 255, 255, 0.5);
+                color: #676358;
+                font-size: 17px;
+            }
+            .banner .pollution .unit {
+                font-size: 16px;
+            }
+            .banner .pollution .status {
+                font-size: 16px;
+                margin-left: 5px;
+            }
+            .banner .pollution::after {
+                width: 20px;
+                height: 20px;
+            }
+            .visual {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: top;
+            }
             .swiper {
                 overflow: inherit;
             }
@@ -160,17 +537,143 @@
                 display: none;
             }
         }
-    </style>
+
+
+   
+  </style>
 </head>
 <body>
     <div class="wrap">
-        <h3>축제</h3>
-        <div class="swiper festival_area">
-            <ul id="festivial_list" class="swiper-wrapper">
-            </ul>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+        <div class="banner">
+            <div class="visual few_clouds">
+                <div class="action_space">
+                    <span class="icon_sun">태양</span>
+                    <span class="icon_cloud">구름</span>
+                    <span class="icon_cloud fixed">구름</span>
+                    <!-- <span class="icon_cloud">구름</span> -->
+                </div>
+                <div class="action_txt">
+                    <span class="day_weather">
+                        <strong class="temp">7.01°C</strong>
+                        <span class="temp_words">Few clouds</span>
+                    </span>
+                    <div class="pollution fair on">
+                        <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                        <span class="status">Fair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <section class="section">
+                <div class="inner">
+                  <h2>대기오염</h2>
+                  <div class="air_pollution">
+                    <!-- <span>미세먼지</span> -->
+                    <div class="pollution good">
+                      <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                      <span class="status">Good</span>
+                    </div>
+                    <div class="pollution fair on">
+                      <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                      <span class="status">Fair</span>
+                    </div>
+                    <div class="pollution moderate">
+                      <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                      <span class="status">Moderate</span>
+                    </div>
+                    <div class="pollution poor">
+                      <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                      <span class="status">Poor</span>
+                    </div>
+                    <div class="pollution very_poor">
+                      <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                      <span class="status">Very Poor</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner">
+                  <h2>5일 날씨</h2>
+                  <div class="weather_list">
+                    <ul>
+                      <li class="weather_item">
+                        <span class="date">Mon</span>
+                        <div class="detail">
+                            <div class="icon">
+                              <img src="/assets/img/clear_sky.png" alt="">
+                            </div>
+                            <p class="temperature"><span>7.01</span></p>
+                            <p class="description">overcast clouds</p>
+                        </div>
+                      </li>
+                      <li class="weather_item">
+                        <span class="date">Tue</span>
+                        <div class="detail">
+                            <div class="icon">
+                              <img src="/assets/img/clear_sky.png" alt="">
+                            </div>
+                            <p class="temperature">
+                              <span>-3.58</span>
+                              <span>7.01</span>
+                            </p>
+                            <p class="description">overcast clouds</p>
+                        </div>
+                      </li>
+                      <li class="weather_item">
+                        <span class="date">Wed</span>
+                        <div class="detail">
+                            <div class="icon">
+                              <img src="/assets/img/few_clouds.png" alt="">
+                            </div>
+                            <p class="temperature">
+                              <span>-3.58</span>
+                              <span>7.01</span>
+                            </p>
+                            <p class="description">few clouds</p>
+                        </div>
+                      </li>
+                      <li class="weather_item">
+                        <span class="date">Thu</span>
+                        <div class="detail">
+                            <div class="icon">
+                              <img src="/assets/img/rain.png" alt="">
+                            </div>
+                            <p class="temperature">
+                              <span>-3.58</span>
+                              <span>7.01</span>
+                            </p>
+                            <p class="description">rain</p>
+                        </div>
+                      </li>
+                      <li class="weather_item">
+                        <span class="date">Fri</span>
+                        <div class="detail">
+                            <div class="icon">
+                              <img src="/assets/img/clear_sky.png" alt="">
+                            </div>
+                            <p class="temperature">
+                              <span>-3.58</span>
+                              <span>7.01</span>
+                            </p>
+                            <p class="description">clear sky</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </section>
+            <section class="section">
+            <div class="inner">
+                <h3>축제</h3>
+                <div class="swiper festival_area">
+                    <ul id="festivial_list" class="swiper-wrapper">
+                    </ul>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            </section>
         </div>
     </div>
 

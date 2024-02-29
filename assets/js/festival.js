@@ -128,7 +128,7 @@ var swiper = new Swiper(".festival_area", {
       },
     breakpoints: {
         1024: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 10,
         },
         769: {
