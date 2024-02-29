@@ -3,10 +3,21 @@
 }
 
 .air-pollution-icon img {
-  width: 10%;
-  height: 10%;
+  width: 20%;
+  height: 20%;
 }
 
 .air-pollution {
-  margin-top : 1em;
+  margin: 1em 2.5em 0 2.5em;
+  border: 1px solid lightgrey;
+  padding: 0.5em;
+  text-align: center;
+}
+
+#air-pollution-info {
+  width: 25%;
+}
+
+.air-pollution > span {
+  font-size: 10px;
 }

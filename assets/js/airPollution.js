@@ -1,4 +1,4 @@
-const API_KEY = `ddc973d36c3a537a40a8c855f6a1089d`;
+// const API_KEY = `ddc973d36c3a537a40a8c855f6a1089d`;
 //검색창 input 값 element
 const searchInput = document.getElementById('location');
 
@@ -6,7 +6,9 @@ const searchInput = document.getElementById('location');
 const searchButton = document.getElementById('search');
 
 //대기오염 정보 보여주는 element
-const airPollutionInfoHTML = document.getElementById('air-pollution-info')
+const airPollutionInfoHTML = document.getElementById('air-pollution-info');
+
+const airPollutionElement = document.getElementsByClassName('air-pollution')
 
 //'Enter' key 눌렀을 때 이벤트(검색)
 searchInput.addEventListener('keydown', async (event) => {
@@ -38,34 +40,42 @@ searchButton.addEventListener('click', async() => {
     }
     //대기오염 정보 조회
     const airPollutionInfo = await getAirPollutionInfo(coordinates.lat, coordinates.lon);
-
     const airPollutionValue = airPollutionInfo.list[0].main.aqi;
     let airPollutionIndicator = "";
     let airPollutionIcon = "";
-    const airPollutionNum = airPollutionInfo.list[0].components.pm10
+    let stateColor = "";
+    const airPollutionNum1 = airPollutionInfo.list[0].components.pm10
+    const airPollutionNum2 = airPollutionInfo.list[0].components.pm2_5
     if(airPollutionValue == 1) {
       airPollutionIndicator = "Good"
       airPollutionIcon = `../assets/img/airPollution_good.png`
+      stateColor = "#aacbff"
     } else if(airPollutionValue == 2){
       airPollutionIndicator = "Fair"
       airPollutionIcon = `../assets/img/airPollution_fair.png`
+      stateColor = "#c5d149"
     } else if(airPollutionValue == 3) {
       airPollutionIndicator = "Moderate"
       airPollutionIcon = `../assets/img/airPollution_moderate.png`
+      stateColor = "#ffcf58"
     } else if(airPollutionValue == 4) {
       airPollutionIndicator = "Poor"
       airPollutionIcon = `../assets/img/airPollution_poor.png`
+      stateColor = "#ffa158"
     } else {
       airPollutionIndicator = "Very Poor" 
       airPollutionIcon = `../assets/img/airPollution_very_poor.png` 
+      stateColor = "#ff6d58"
     }
     const renderInfo = {
       airPollutionIndicator,
       airPollutionIcon,
-      airPollutionNum
+      airPollutionNum1,
+      airPollutionNum2
     }
 
     render(renderInfo, airPollutionInfoHTML);
+    airPollutionElement[0].style.backgroundColor = stateColor;
 
     // const predict = await predictAirPollutionInfo(coordinates.lat, coordinates.lon)
     
@@ -127,9 +137,13 @@ function render(renderInfo, airPollutionInfoHTML) {
     </div>
     
     <div class="air-pollution-value">${renderInfo.airPollutionIndicator}</div>
-    <div>미세먼지</div>
-    <div class="air-pollution-num">${renderInfo.airPollutionNum} ㎍/㎥</div>
+    <span>미세먼지</span> 
+    <span class="air-pollution-num1">${renderInfo.airPollutionNum1} ㎍/㎥</span> |
+    
+    <span>초미세먼지</span>
+    <span class="air-pollution-num2">${renderInfo.airPollutionNum2} ㎍/㎥</span>
     
   </div>`;
   airPollutionInfoHTML.innerHTML = html;
 }
+
