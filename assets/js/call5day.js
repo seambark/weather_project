@@ -170,7 +170,7 @@ function renderWeather(weatherData, weatherInfoElement) {
         <div class="icon">
           <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
         </div>
-        <div class="temperature">${data.highTemp.toFixed(2)}°C / ${data.lowTemp.toFixed(2)}°C</div>
+        <div class="temperature">${data.lowTemp.toFixed(2)}°C / ${data.highTemp.toFixed(2)}°C</div>
         <div class="description">${data.weatherDescription}</div>
         <div class="wind">Wind: ${data.avgWindSpeed.toFixed(2)} m/s ${data.avgWindDirection.toFixed(0)}°</div>
         <div class="cloudiness">Cloudiness: ${data.avgCloudiness.toFixed(0)}%</div>
