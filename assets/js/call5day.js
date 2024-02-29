@@ -127,23 +127,23 @@ function aggregateDailyData(list) {
       .pop();
     data.weatherDescription = mostFrequent(data.weatherDescriptions);
     data.weatherIcon = mostFrequent(data.weatherIcons);
-    if (data.weatherDescription === 'clear sky' | data.weatherDescription === '01n') {
+    if (data.weatherDescription === 'clear sky') {
       data.weatherIconImg = 'clear_sky';
-    } else if (data.weatherDescription === 'few clouds' | data.weatherDescription === '02n') {
+    } else if (data.weatherDescription === 'few clouds') {
       data.weatherIconImg = 'few_clouds';
-    } else if (data.weatherDescription === 'scattered clouds' | data.weatherDescription === '03n') {
+    } else if (data.weatherDescription === 'scattered clouds') {
       data.weatherIconImg = 'scattered_clouds';
     } else if (data.weatherDescription === 'broken clouds' | data.weatherDescription === 'overcast clouds') {
       data.weatherIconImg = 'broken_clouds';
-    } else if (data.weatherDescription === 'shower rain' | data.weatherDescription === '09n') {
+    } else if (data.weatherDescription === 'shower rain') {
       data.weatherIconImg = 'shower_rain';
     } else if (data.weatherDescription === 'rain' | data.weatherDescription === 'light rain') {
       data.weatherIconImg = 'rain';
-    } else if (data.weatherDescription === 'thunderstorm' | data.weatherDescription === '11n') {
+    } else if (data.weatherDescription === 'thunderstorm') {
       data.weatherIconImg = 'thunderstorm';
-    } else if (data.weatherDescription === 'snow' | data.weatherDescription === '13n') {
+    } else if (data.weatherDescription === 'snow') {
       data.weatherIconImg = 'snow';
-    } else if (data.weatherDescription === 'mist' | data.weatherDescription === '50n') {
+    } else if (data.weatherDescription === 'mist') {
       data.weatherIconImg = 'mist';
     }        
 
