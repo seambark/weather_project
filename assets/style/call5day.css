@@ -60,3 +60,8 @@ h1 {
 .description {
     width: 40%;
 }
+
+.icon img {
+    width: auto; /* or you can use some specific size like 50px */
+    height: 60px; /* Adjust the height to scale the image down */
+}
