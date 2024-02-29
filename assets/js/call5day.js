@@ -1,4 +1,3 @@
-// const OPEN_WEATHER_API_KEY = '62bc430c2e97afc5954eee5d617b781e';
 
 document.addEventListener('DOMContentLoaded', function () {
   const locationInput = document.getElementById('location');
@@ -75,14 +74,20 @@ async function get5DayForecast(lat, lon) {
 
 
 function aggregateDailyData(list) {
-  return list.reduce((acc, item) => {
-    // Extract the date part from the dt_txt field
+  // Initialize an object to hold our aggregated data
+  const dailyData = {};
+
+  // Process each weather data entry
+  list.forEach(item => {
     const date = item.dt_txt.split(' ')[0];
-    if (!acc[date]) {
-      acc[date] = {
+    const time = item.dt_txt.split(' ')[1];
+
+    // Create a new entry if one does not exist for this date
+    if (!dailyData[date]) {
+      dailyData[date] = {
         temps: [],
-        weatherDescriptions: new Set(),
-        weatherIcons: new Set(),
+        weatherDescription: null,
+        weatherIcon: null,
         windSpeeds: [],
         windDirections: [],
         cloudinessValues: [],
@@ -91,46 +96,57 @@ function aggregateDailyData(list) {
       };
     }
 
-    acc[date].temps.push(item.main.temp);
-    acc[date].weatherDescriptions.add(item.weather[0].description);
-    acc[date].weatherIcons.add(item.weather[0].icon);
-    acc[date].windSpeeds.push(item.wind.speed);
-    acc[date].windDirections.push(item.wind.deg);
-    acc[date].cloudinessValues.push(item.clouds.all);
-    acc[date].humidityValues.push(item.main.humidity);
-    acc[date].pressureValues.push(item.main.pressure);
+    // Aggregate data
+    dailyData[date].temps.push(item.main.temp);
+    dailyData[date].windSpeeds.push(item.wind.speed);
+    dailyData[date].windDirections.push(item.wind.deg);
+    dailyData[date].cloudinessValues.push(item.clouds.all);
+    dailyData[date].humidityValues.push(item.main.humidity);
+    dailyData[date].pressureValues.push(item.main.pressure);
 
-    return acc;
-  }, {});
+    // If the time is 9 AM, use this entry's weather description and icon
+    if (time === "09:00:00") {
+      dailyData[date].weatherDescription = item.weather[0].description;
+      dailyData[date].weatherIcon = item.weather[0].icon;
+    }
+  });
+
+  // Calculate the average, high, and low values for each day
+  Object.keys(dailyData).forEach(date => {
+    const data = dailyData[date];
+    const total = (array) => array.reduce((sum, x) => sum + x, 0);
+
+    data.highTemp = Math.max(...data.temps);
+    data.lowTemp = Math.min(...data.temps);
+    data.avgWindSpeed = total(data.windSpeeds) / data.windSpeeds.length;
+    data.avgWindDirection = total(data.windDirections) / data.windDirections.length;
+    data.avgCloudiness = total(data.cloudinessValues) / data.cloudinessValues.length;
+    data.avgHumidity = total(data.humidityValues) / data.humidityValues.length;
+    data.avgPressure = total(data.pressureValues) / data.pressureValues.length;
+  });
+
+  return dailyData;
 }
 
 function renderWeather(weatherData, weatherInfoElement) {
   const dailyData = aggregateDailyData(weatherData.list);
 
+  // Map over each day and generate the HTML
   const dailyForecasts = Object.keys(dailyData).map(day => {
     const data = dailyData[day];
-    const highTemp = Math.max(...data.temps).toFixed(2);
-    const lowTemp = Math.min(...data.temps).toFixed(2);
-    const weatherDescription = [...data.weatherDescriptions].join(', '); // Join all descriptions
-    const weatherIcon = [...data.weatherIcons][0]; // Use the first icon
-    const windSpeed = data.windSpeeds.length ? (data.windSpeeds.reduce((a, b) => a + b, 0) / data.windSpeeds.length).toFixed(2) : 'N/A';
-    const windDirection = data.windDirections.length ? (data.windDirections.reduce((a, b) => a + b, 0) / data.windDirections.length).toFixed(0) : 'N/A';
-    const cloudiness = data.cloudinessValues.length ? Math.round(data.cloudinessValues.reduce((a, b) => a + b, 0) / data.cloudinessValues.length) : 'N/A';
-    const humidity = data.humidityValues.length ? Math.round(data.humidityValues.reduce((a, b) => a + b, 0) / data.humidityValues.length) : 'N/A';
-    const pressure = data.pressureValues.length ? Math.round(data.pressureValues.reduce((a, b) => a + b, 0) / data.pressureValues.length) : 'N/A';
 
     return `
       <div class="weather-item">
-        <div class="date">${new Date(day).toLocaleDateString('en-EN')}</div>
+        <div class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
         <div class="icon">
-          <img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="${weatherDescription}">
+          <img src="https://openweathermap.org/img/wn/${data.weatherIcon}@2x.png" alt="${data.weatherDescription}">
         </div>
-        <div class="temperature">High: ${highTemp}°C / Low: ${lowTemp}°C</div>
-        <div class="description">${weatherDescription}</div>
-        <div class="wind">Wind: ${windSpeed} m/s ${windDirection}°</div>
-        <div class="cloudiness">Cloudiness: ${cloudiness}%</div>
-        <div class="humidity">Humidity: ${humidity}%</div>
-        <div class="pressure">Pressure: ${pressure} hPa</div>
+        <div class="temperature">High: ${data.highTemp.toFixed(2)}°C / Low: ${data.lowTemp.toFixed(2)}°C</div>
+        <div class="description">${data.weatherDescription}</div>
+        <div class="wind">Wind: ${data.avgWindSpeed.toFixed(2)} m/s ${data.avgWindDirection.toFixed(0)}°</div>
+        <div class="cloudiness">Cloudiness: ${data.avgCloudiness.toFixed(0)}%</div>
+        <div class="humidity">Humidity: ${data.avgHumidity.toFixed(0)}%</div>
+        <div class="pressure">Pressure: ${data.avgPressure.toFixed(0)} hPa</div>
       </div>
     `;
   }).join('');
