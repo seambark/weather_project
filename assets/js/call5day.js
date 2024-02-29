@@ -111,6 +111,7 @@ function aggregateDailyData(list) {
   Object.keys(dailyData).forEach(date => {
     const data = dailyData[date];
     const total = (array) => array.reduce((sum, x) => sum + x, 0);
+    
 
     data.highTemp = Math.max(...data.temps);
     data.lowTemp = Math.min(...data.temps);
@@ -121,6 +122,9 @@ function aggregateDailyData(list) {
     data.avgPressure = total(data.pressureValues) / data.pressureValues.length;
 
     // Determine the most frequent weather description and icon
+    const mistConditions = ['mist', 'smoke', 'haze', 'sand/dust whirls', 'fog', 'sand', 'dust', 'volcanic ash', 'squalls', 'tornado'];
+    const rainConditions = ['light rain', 'moderate rain', 'heavy intensity rain', 'very heavy rain', 'extreme rain'];
+
     const mostFrequent = (array) => array.sort((a, b) =>
       array.filter(v => v === a).length
       - array.filter(v => v === b).length)
@@ -135,18 +139,18 @@ function aggregateDailyData(list) {
       data.weatherIconImg = 'scattered_clouds';
     } else if (data.weatherDescription === 'broken clouds' | data.weatherDescription === 'overcast clouds') {
       data.weatherIconImg = 'broken_clouds';
-    } else if (data.weatherDescription === 'shower rain') {
+    } else if (data.weatherDescription === 'shower rain' | data.weatherDescription.includes('Drizzle'))  {
       data.weatherIconImg = 'shower_rain';
-    } else if (data.weatherDescription === 'rain' | data.weatherDescription === 'light rain') {
+    } else if (data.weatherDescription === 'rain' | rainConditions.some(condition => data.weatherDescription.includes(condition))) {
       data.weatherIconImg = 'rain';
-    } else if (data.weatherDescription === 'thunderstorm') {
+    } else if (data.weatherDescription.includes('thunderstorm')) {
       data.weatherIconImg = 'thunderstorm';
-    } else if (data.weatherDescription === 'snow') {
+    } else if (data.weatherDescription.includes('snow') | data.weatherDescription.includes('sleet') | data.weatherDescription.includes('freezing')) {
       data.weatherIconImg = 'snow';
-    } else if (data.weatherDescription === 'mist') {
+    } else if (mistConditions.some(condition => data.weatherDescription.includes(condition))) { 
       data.weatherIconImg = 'mist';
     }        
-
+    
     });
 
   return dailyData;
