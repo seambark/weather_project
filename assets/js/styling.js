@@ -141,31 +141,31 @@ const currentweather = async (latitude, longitude) => {
 //기온에 따라 옷추천
     if(c <= 4 ){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_01.png">
-        </div>
-        <div>
-            <h2>"매우 추운 날이네요! 두꺼운 아우터입고 체온을 따뜻히 유지하세요"</h2>
-            <h3>추천 코디 : 패딩, 두꺼운 코트, 목도리, 기모제품</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_01.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"매우 추운 날이네요! 두꺼운 아우터입고 체온을 따뜻히 유지하세요"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 패딩, 두꺼운 코트, 목도리, 기모제품</p>
+                    </div>`
     }else if(c >=5 && c <=8){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_02.png">
-        </div>
-        <div>
-            <h2>"큰 추위 없는 날씨네요! 하지만 외출 시 보온에 신경 써주세요"</h2>
-            <h3>추천 코디 : 코트, 가죽자켓, 히트텍, 니트, 레깅스</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_02.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"큰 추위 없는 날씨네요! 하지만 외출 시 보온에 신경 써주세요"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 코트, 가죽자켓, 히트텍, 니트, 레깅스</p>
+                    </div>`
     } else if(c =9 && c <=11){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_03.png">
-        </div>
-        <div>
-            <h2>"약간 쌀쌀하지만 활동하기 좋은 날이네요! 오늘의 추천 코디는"</h2>
-            <h3>추천 코디 : 자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_03.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"약간 쌀쌀하지만 활동하기 좋은 날이네요! 오늘의 추천 코디는"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹</p>
+                    </div>`
     } else if(c =12 && c <=16){
         clothes.innerHTML=`
         <div>
@@ -177,40 +177,40 @@ const currentweather = async (latitude, longitude) => {
         </div>`
     } else if(c =17 && c <=19){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_06.png">
-        </div>
-        <div>
-            <h2>"완전한 봄, 가을 날씨입니다! 오늘의 코디는"</h2>
-            <h3>추천 코디 : 얇은 니트, 맨투맨, 가디건, 청바지</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_06.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"완전한 봄, 가을 날씨입니다! 오늘의 코디는"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 얇은 니트, 맨투맨, 가디건, 청바지</p>
+                    </div>`
     } else if(c =20 && c <=22){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_05.png">
-        </div>
-        <div>
-            <h2>"멘트??"</h2>
-            <h3>추천 코디 : 얇은 가디건, 긴팔, 면바지, 청바지</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_05.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 얇은 가디건, 긴팔, 면바지, 청바지</p>
+                    </div>`
     } else if(c =23 && c <=27){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_07.png">
-        </div>
-        <div>
-            <h2>"멘트??"</h2>
-            <h3>추천 코디 : 반팔, 얇은 셔츠, 반바지, 면바지</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_07.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                    </div>`
     } else if(c =28){
         clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_08.png">
-        </div>
-        <div>
-            <h2>"매우 더운 날씨입니다! 외출을 자제하시고 온열질환 조심하세요"</h2>
-            <h3>추천 코디 : 민소매, 반팔, 반바지, 원피스</h3>
-        </div>`
+        <div class="clothes_icon">
+                        <img src="../assets/img/temperatura_step_08.png">
+                    </div>
+                    <div class="clothes_bubble">
+                        <p class="clothes_phrase">"매우 더운 날씨입니다! 외출을 자제하시고 온열질환 조심하세요"</p><br>
+                        <p class="clothes_recommend">*추천 코디 : 민소매, 반팔, 반바지, 원피스</p>
+                    </div>`
     } ;
 
     document.getElementById("current").innerHTML = weatherview;
