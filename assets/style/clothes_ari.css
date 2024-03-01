@@ -7,40 +7,9 @@ h2{
     margin-bottom: 20px;
 }
 
-.flex{
-    display: flex;
-    justify-content: center;
-}
-
-.weatherimg{
-width: 800px;
-height: 350px;
-padding-top: 50px;
-
-}
-
-.weather-container {
-    position: relative;
-    display: inline-block; 
-}
-
-.weather-text {
-    position: absolute;
-    bottom: 0; 
-    left: 0; 
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 5px; 
-    font-size: 14px; 
-    color: #000; 
-}
-
-.sectionterm{
-    padding-top: 50px;
-}
-
 .clothes{
     width: 100%;
-    height: 280px;
+    height: 260px;
     margin-bottom: 10px; /* 요소 사이의 간격 추가 */
 }
 .clothessection{
@@ -110,12 +79,13 @@ margin-bottom: 20px;
 .clothes_bubble {margin-left: 20px;}
 .clothes_bubble:after {display: none;}
 
+
 .clothes_phrase{
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    }
-    .clothes_t2{
-        font-size: 16px;
-    }
+font-size: 25px;
+font-weight: bold;
+margin-bottom: 20px;
+}
+.clothes_t2{
+    font-size: 16px;
+}
 }

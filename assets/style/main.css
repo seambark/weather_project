@@ -49,12 +49,13 @@ header, main, footer {
     margin-bottom: 10px; /* 요소 사이의 간격 추가 */
 }
 
-.Clothes, .Festival {
+.clothes, .Festival {
     width: 100%;
     height: 300px;
-    border: 1px solid green;
     margin-bottom: 10px; /* 요소 사이의 간격 추가 */
 }
+
+
 
 
 /*모바일*/
