@@ -43,8 +43,28 @@ document.addEventListener('DOMContentLoaded', function () {
          });
          return;
        }
+
+       try {
+             const coordinates = await getCoordinates(city);
+             if (!coordinates) {
+               alert('도시를 찾을 수 없습니다.', {
+                 title: '알림',
+                 icon: 'warning',
+               });
+               return;
+             }
+             const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
+             renderWeather(weatherData, weatherInfoElement);
+           } catch (error) {
+             console.error(error);
+             alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
+               title: '알림',
+               icon: 'warning',
+             });
+           }
+         });
      });
-  });
+  
 
 //enter 입력
   
@@ -106,35 +126,255 @@ const currentweather = async (latitude, longitude) => {
         let c_min = weather.main.temp_min - 273.15;
     
         let weatherview = 
-        `<div id="current">
+        `<div class="banner" id ="current"> 
         
-        <div id="current" class="weather-container">
-                    
-            <div class="weather-text">
-            <div>지역 : ${weather.name}</div>
-            <div>현재기온: ${c.toFixed(0)} °C</div>
-            <div>날씨: ${weather.weather[0].main}</div>
-            <div>습도: ${weather.main.humidity}%</div>
-            <div>기압: ${weather.main.pressure}hPa</div>
-            <div>최고기온: ${c_max.toFixed(0)} °C</div>
-            <div>최저기온: ${c_min.toFixed(0)} °C</div>
-        </div>`;
+        <div class="present_weather">
+            <div class="action_space">
+            </div>
+            <div class="action_txt">
+                <!-- 데이터 텍스트 영역 --> 
+                <div class="day_weather">
+                    <div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>February 27</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>`;
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
-        if (weather.weather[0].main === "Clouds") {
-            weatherview += `<img src="../assets/img/broken_clouds.png">`;
-        }else if(weather.weather[0].main === "Clear"){
-            weatherview +=`<img src="../assets/img/clear_sky.png">`
+if (weather.weather[0].main === "Clouds") {
+    weatherview = `<div class="banner bg_broken_clouds" id ="current"> 
+        
+    <div class="present_weather">
+        <div class="action_space">
+        </div>
+        <div class="action_txt">
+            <!-- 데이터 텍스트 영역 --> 
+            <div class="day_weather">
+                <div class="temp">
+                    <strong class="temp_num">${c.toFixed(0)}</strong>
+                    <span class="temp_words">${weather.weather[0].main}</span>
+                </div>
+                <div class="value">
+                    <span>${weather.name}</span>
+                    <span>February 27</span>
+                </div>
+                <div class="other">
+                    <span class="wind">
+                        <span>Wind</span>
+                        <span>${weather.wind.speed}</span>
+                    </span>
+                    <span class="humidity">
+                        <span>Humidity</span>
+                        <span>${weather.main.humidity}%</span>
+                    </span>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>`;
+} else if (weather.weather[0].main === "Clear") {
+    weatherview = `<div class="banner bg_clear_sky" id ="current"> 
+        
+    <div class="present_weather">
+        <div class="action_space">
+        </div>
+        <div class="action_txt">
+            <!-- 데이터 텍스트 영역 --> 
+            <div class="day_weather">
+                <div class="temp">
+                    <strong class="temp_num">${c.toFixed(0)}</strong>
+                    <span class="temp_words">${weather.weather[0].main}</span>
+                </div>
+                <div class="value">
+                    <span>${weather.name}</span>
+                    <span>February 27</span>
+                </div>
+                <div class="other">
+                    <span class="wind">
+                        <span>Wind</span>
+                        <span>${weather.wind.speed}</span>
+                    </span>
+                    <span class="humidity">
+                        <span>Humidity</span>
+                        <span>${weather.main.humidity}%</span>
+                    </span>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>`;
         }else if(weather.weather[0].main === "Thunderstorm"){
-            weatherview +=`<img src="../assets/img/thunderstorm.png">`
+            weatherview =`<div class="banner bg_thunderstorm" id ="current"> 
+        
+            <div class="present_weather">
+                <div class="action_space">
+                </div>
+                <div class="action_txt">
+                    <!-- 데이터 텍스트 영역 --> 
+                    <div class="day_weather">
+                        <div class="temp">
+                            <strong class="temp_num">${c.toFixed(0)}</strong>
+                            <span class="temp_words">${weather.weather[0].main}</span>
+                        </div>
+                        <div class="value">
+                            <span>${weather.name}</span>
+                            <span>February 27</span>
+                        </div>
+                        <div class="other">
+                            <span class="wind">
+                                <span>Wind</span>
+                                <span>${weather.wind.speed}</span>
+                            </span>
+                            <span class="humidity">
+                                <span>Humidity</span>
+                                <span>${weather.main.humidity}%</span>
+                            </span>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>`
         }else if(weather.weather[0].main === "Rain"){
-            weatherview +=`<img src="../assets/img/shower_rain.png">`
+            weatherview =`<div class="banner bg_rain" id ="current"> 
+        
+            <div class="present_weather">
+                <div class="action_space">
+                </div>
+                <div class="action_txt">
+                    <!-- 데이터 텍스트 영역 --> 
+                    <div class="day_weather">
+                        <div class="temp">
+                            <strong class="temp_num">${c.toFixed(0)}</strong>
+                            <span class="temp_words">${weather.weather[0].main}</span>
+                        </div>
+                        <div class="value">
+                            <span>${weather.name}</span>
+                            <span>February 27</span>
+                        </div>
+                        <div class="other">
+                            <span class="wind">
+                                <span>Wind</span>
+                                <span>${weather.wind.speed}</span>
+                            </span>
+                            <span class="humidity">
+                                <span>Humidity</span>
+                                <span>${weather.main.humidity}%</span>
+                            </span>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>`
         }else if(weather.weather[0].main === "Snow"){
-            weatherview +=`<img src="../assets/img/snow.png">`
+            weatherview =`<div class="banner bg_snow" id ="current"> 
+        
+            <div class="present_weather">
+                <div class="action_space">
+                </div>
+                <div class="action_txt">
+                    <!-- 데이터 텍스트 영역 --> 
+                    <div class="day_weather">
+                        <div class="temp">
+                            <strong class="temp_num">${c.toFixed(0)}</strong>
+                            <span class="temp_words">${weather.weather[0].main}</span>
+                        </div>
+                        <div class="value">
+                            <span>${weather.name}</span>
+                            <span>February 27</span>
+                        </div>
+                        <div class="other">
+                            <span class="wind">
+                                <span>Wind</span>
+                                <span>${weather.wind.speed}</span>
+                            </span>
+                            <span class="humidity">
+                                <span>Humidity</span>
+                                <span>${weather.main.humidity}%</span>
+                            </span>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>`
         }else if(weather.weather[0].main === "Mist"){
-            weatherview +=`<img src="../assets/img/mist.png">`
+            weatherview =`<div class="banner bg_mist" id ="current"> 
+        
+            <div class="present_weather">
+                <div class="action_space">
+                </div>
+                <div class="action_txt">
+                    <!-- 데이터 텍스트 영역 --> 
+                    <div class="day_weather">
+                        <div class="temp">
+                            <strong class="temp_num">${c.toFixed(0)}</strong>
+                            <span class="temp_words">${weather.weather[0].main}</span>
+                        </div>
+                        <div class="value">
+                            <span>${weather.name}</span>
+                            <span>February 27</span>
+                        </div>
+                        <div class="other">
+                            <span class="wind">
+                                <span>Wind</span>
+                                <span>${weather.wind.speed}</span>
+                            </span>
+                            <span class="humidity">
+                                <span>Humidity</span>
+                                <span>${weather.main.humidity}%</span>
+                            </span>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>`
         }else if(weather.weather[0].main === "Fog"){
-            weatherview +=`<img src="../assets/img/mist.png">`
+            weatherview =`<div class="banner bg_mist" id ="current"> 
+        
+            <div class="present_weather">
+                <div class="action_space">
+                </div>
+                <div class="action_txt">
+                    <!-- 데이터 텍스트 영역 --> 
+                    <div class="day_weather">
+                        <div class="temp">
+                            <strong class="temp_num">${c.toFixed(0)}</strong>
+                            <span class="temp_words">${weather.weather[0].main}</span>
+                        </div>
+                        <div class="value">
+                            <span>${weather.name}</span>
+                            <span>February 27</span>
+                        </div>
+                        <div class="other">
+                            <span class="wind">
+                                <span>Wind</span>
+                                <span>${weather.wind.speed}</span>
+                            </span>
+                            <span class="humidity">
+                                <span>Humidity</span>
+                                <span>${weather.main.humidity}%</span>
+                            </span>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>`
         };
     
 

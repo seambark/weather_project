@@ -315,10 +315,11 @@ footer ul {
 }
 
 .bg_clear_sky {
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #abc4f3
+	/*background-image: url(../img/bg_few_clouds.png"); */
 }
 .bg_few_clouds {
-	background-color: #c6d3ff;
+	background-color: #6b6d71;
 	/* background-image: url("../img/bg_few_clouds.png"); */
 }
 .bg_scattered_clouds {
@@ -326,7 +327,7 @@ footer ul {
 	/* background-image: url("../img/bg_few_clouds.png"); */
 }
 .bg_broken_clouds {
-	background-color: #c6d3ff;
+	background-color: #6b6d71;
 	/* background-image: url("../img/bg_few_clouds.png"); */
 }
 .bg_shower_rain {
