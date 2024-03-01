@@ -25,7 +25,7 @@
             <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
         </div>
     </header>
-    <div class="banner bg_rain" id ="current"> 
+    <div class="banner bg_few_clouds" id ="current"> 
         <!-- 
             banner클래스는 그대로 유지한 상태로9종류 클래스 추가 변경
             bg_clear_sky, bg_few_clouds, bg_scattered_clouds, 
@@ -66,12 +66,12 @@
                     -->
                 </div>
                 <!-- //데이터 텍스트 영역 --> 
-                <div class="pollution no_data"> <!-- 데이터가 없을 시 : no_data --->
+                <div class="pollution fair on"> <!-- 데이터가 없을 시 : no_data --->
                     <!-- 데이터 없을 시 -->
-                    <span>미세먼지 정보가 없습니다.</span>
+                    <!-- <span>미세먼지 정보가 없습니다.</span> -->
                    
-                    <!-- <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
-                    <span class="status">Fair</span> -->
+                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                    <span class="status">Fair</span>
                 </div>
             </div>
         </div>
@@ -223,6 +223,6 @@
 <script src="/assets/js/festival.js"></script>
 <script src="../assets/js/call5day.js"></script>
 <script src="/assets/js/airPollution.js"></script>
-<script src="/assets/js/styling.js"></script>
+<!-- <script src="/assets/js/styling.js"></script> -->
 </body>
 </html>
