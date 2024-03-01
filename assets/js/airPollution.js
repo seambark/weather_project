@@ -16,8 +16,8 @@ const airPollutionInfoHTML = document.getElementById('air-pollution-info');
 
 //검색 버튼 클릭 했을 때 이벤트(검색)
 searchButton.addEventListener('click', async() => {
-  const city = searchInput.value.trim();
-  
+  //const city = searchInput.value.trim();
+  const city = locationInput.value.trim();
   if (!city) {
     alert('도시 이름을 입력해 주세요.', {
         title: '알림',
