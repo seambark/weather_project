@@ -518,8 +518,11 @@ footer ul {
 	font-size: 24px;
 	margin-left: 10px;
 }
-
-
+.banner.no_data {
+	display: inherit;
+	padding: 0;
+	border-radius: 0;
+}
 
 .icon_cloud {
 	top: 0;
@@ -730,6 +733,10 @@ footer ul {
 	margin-top: 7px;
 	color: #a2a2a2;
 	font-size: 13px;
+}
+
+.weather_list .no_data {
+	height: 220px;
 }
 
 /* festival */
@@ -946,6 +953,10 @@ footer ul {
 	button {
 		font-size: 16px;
 	}
+
+	.no_data {
+		min-height: inherit;
+	}
 	.header {
 		position: fixed;
 		top: 0;
@@ -1023,9 +1034,11 @@ footer ul {
 	}
 
 	.banner {
+		position: relative;
 		overflow: inherit;
 		margin-bottom: 165px;
 	}
+
 	.action_space {
 		overflow: hidden;
 	}
@@ -1089,33 +1102,6 @@ footer ul {
 		color:#6e6e6e;
 		font-size: 17px;
 	}
-
-	.section {
-		flex-direction: column;
-	}
-
-	.section .inner:not(:only-child):first-child {
-		width: 100%;
-		padding-right: 0;
-	}
-	.m_pull h2 { 
-		padding: 0 20px;
-	}
-	.m_pull {
-		overflow: hidden;
-		margin: 30px -20px 0;
-	}
-	.m_pull .inner {
-		overflow: inherit;
-	}
-	.m_pull .festival  {
-		padding: 0 20px;
-	}
-
-	.banner {
-		position: relative;
-	}
-
 	.banner .pollution {
 		display: flex;
 		align-items: center;
@@ -1145,8 +1131,39 @@ footer ul {
 		width: 20px;
 		height: 20px;
 	}
+	.banner .pollution.no_data {
+		width: auto;
+		font-size: 12px;
+		padding: 10px 20px;
+		justify-content: center;
+	}
+
+	.section {
+		flex-direction: column;
+	}
+
+	.section .inner:not(:only-child):first-child {
+		width: 100%;
+		padding-right: 0;
+	}
+	.m_pull h2 { 
+		padding: 0 20px;
+	}
+	.m_pull {
+		overflow: hidden;
+		margin: 30px -20px 0;
+	}
+	.m_pull .inner {
+		overflow: inherit;
+	}
+	.m_pull .festival  {
+		padding: 0 20px;
+	}
 	.icon_cloud.fixed {
 		left: 100%;
+	}
+	.banner.no_data {
+		margin-bottom: 0;
 	}
 
 	.pollution {
