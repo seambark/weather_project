@@ -163,22 +163,38 @@ function renderWeather(weatherData, weatherInfoElement) {
   // Map over each day and generate the HTML
   const dailyForecasts = Object.keys(dailyData).map(day => {
     const data = dailyData[day];
-
+    
     return `
-      <div class="weather-item">
-        <div class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+    <li class="weather_item">
+    <span class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short'})}</span>
+    <div class="detail">
         <div class="icon">
-          <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
+            <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
         </div>
-        <div class="temperature">${data.lowTemp.toFixed(2)}°C / ${data.highTemp.toFixed(2)}°C</div>
-        <div class="description">${data.weatherDescription}</div>
-        <div class="wind">Wind: ${data.avgWindSpeed.toFixed(2)} m/s ${data.avgWindDirection.toFixed(0)}°</div>
-        <div class="cloudiness">Cloudiness: ${data.avgCloudiness.toFixed(0)}%</div>
-        <div class="humidity">Humidity: ${data.avgHumidity.toFixed(0)}%</div>
-        <div class="pressure">Pressure: ${data.avgPressure.toFixed(0)} hPa</div>
-      </div>
+        <p class="temperature"><span>${data.lowTemp.toFixed(2)} / ${data.highTemp.toFixed(2)}</span></p>
+        <p class="description">${data.weatherDescription}</p>
+    </div>
+    </li>
     `;
   }).join('');
+
+
+
+  //   return `
+  //     <div class="weather-item">
+  //       <div class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
+  //       <div class="icon">
+  //         <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
+  //       </div>
+  //       <div class="temperature">${data.lowTemp.toFixed(2)}°C / ${data.highTemp.toFixed(2)}°C</div>
+  //       <div class="description">${data.weatherDescription}</div>
+  //       <div class="wind">Wind: ${data.avgWindSpeed.toFixed(2)} m/s ${data.avgWindDirection.toFixed(0)}°</div>
+  //       <div class="cloudiness">Cloudiness: ${data.avgCloudiness.toFixed(0)}%</div>
+  //       <div class="humidity">Humidity: ${data.avgHumidity.toFixed(0)}%</div>
+  //       <div class="pressure">Pressure: ${data.avgPressure.toFixed(0)} hPa</div>
+  //     </div>
+  //   `;
+  // }).join('');
 
   weatherInfoElement.innerHTML = dailyForecasts;
 }
