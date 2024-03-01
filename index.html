@@ -22,7 +22,7 @@
         <button type="button" class="open_search">검색창 열기</button>
         <div class="input_area">
             <input type="text" class="search_bar" id="location" placeholder="오늘의 날씨를 알고싶은 지역을 입력해주세요.">
-            <button class="search_btn" id="search">검색</button>
+            <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
         </div>
     </header>
     <div class="banner bg_rain">
@@ -155,7 +155,7 @@
         <section class="section">
             <div class="inner">
                 <h2>옷차림 추천</h2>
-                <div class="clothes">
+                <div class="clothes" id="clothes">
                     <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_01.png">
                     </div>
@@ -195,5 +195,7 @@
 <script src="/assets/js/index.js"></script>
 <script src="/assets/js/festival.js"></script>
 <script src="../assets/js/call5day.js"></script>
+<script src="/assets/js/airPollution.js"></script>
+<script src="/assets/js/styling.js"></script>
 </body>
 </html>
