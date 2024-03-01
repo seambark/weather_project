@@ -5,34 +5,61 @@ let addbutton = document.getElementById("searchButton")
 
 //빈값이면 버튼 블락
 
-function buttondisabled() {
-    const locationValue = document.getElementById("location").value.trim();
+// function buttondisabled() {
     
-    if (locationValue === "" ) {
-        document.getElementById('searchButton').disabled = true;
-    } else {
-        document.getElementById('searchButton').disabled = false;
-    }
-}
+//     const locationValue = document.getElementById("location").value.trim();
+//     console.log(locationValue)
+//     if (locationValue ==="" ) {
 
-document.getElementById("location").addEventListener("input", buttondisabled);
+//         document.getElementById('searchButton').disabled = true;
+//     } else {
+//         document.getElementById('searchButton').disabled = false;
+//     }
+// }
 
-buttondisabled();
+// document.getElementById("location").addEventListener("input", buttondisabled);
+
+// buttondisabled();
+
+//->block 대신 alert 뜨게 만듦
+
+document.addEventListener('DOMContentLoaded', function () {
+    const locationInput = document.getElementById('location');
+    const searchButton = document.getElementById('searchButton');
+  
+     locationInput.addEventListener('keydown', async (event) => {
+       if (event.key === 'Enter') {
+         searchButton.click();
+       }
+     });
+  
+     searchButton.addEventListener('click', async () => {
+       const city = locationInput.value.trim();
+  
+       if (!city) {
+         alert('도시 이름을 입력해 주세요.', {
+           title: '알림',
+           icon: 'warning',
+         });
+         return;
+       }
+     });
+  });
 
 //enter 입력
   
-let input = document.getElementById("location");
+// let input = document.getElementById("location");
 
-input.addEventListener("keypress", (e)=>{
-    if (e.key == "Enter") {
-        e.preventDefault();
-        addbutton.click()
-        input.value = "";
+// input.addEventListener("keypress", (e)=>{
+//     if (e.key == "Enter") {
+//         e.preventDefault();
+//         addbutton.click()
+//         input.value = "";
 
-        buttondisabled();
-    }
-}
-);
+//       //  buttondisabled();
+//     }
+// }
+// );
 
 
 //지역 검색 날씨정보

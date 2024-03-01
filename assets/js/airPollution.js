@@ -1,18 +1,18 @@
 //검색창 input 값 element
-const searchInput = document.getElementById('location');
+//const searchInput = document.getElementById('location');
 
 //검색 버튼 element
-const searchButton = document.getElementById('search');
+//const searchButton = document.getElementById('search');
 
 //대기오염 정보 보여주는 element
 const airPollutionInfoHTML = document.getElementById('air-pollution-info');
 
 //'Enter' key 눌렀을 때 이벤트(검색)
-searchInput.addEventListener('keydown', async (event) => {
-  if(event.key === 'Enter') {
-    searchButton.click();
-  }
-})
+// searchInput.addEventListener('keydown', async (event) => {
+//   if(event.key === 'Enter') {
+//     searchButton.click();
+//   }
+// })
 
 //검색 버튼 클릭 했을 때 이벤트(검색)
 searchButton.addEventListener('click', async() => {
