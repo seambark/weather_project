@@ -109,44 +109,58 @@ const festivalList = [
     }
 ];
 
+
+let searchBtn = document.querySelector('.search_btn');
 let today = new Date();
 let year = today.getFullYear(); 
 let month = (`0` + (today.getMonth() + 1)).slice(-2);
 let date = (`0` + today.getDate()).slice(-2);
 let todayDate = year + '.' + month + '.' + date;
 let fillterList = [];
-let keyword = '인천';
+let keyword = '';
+
+searchBtn.addEventListener('click', function() {
+    let locationKeyword = document.querySelector('#location').value;
+    keyword = locationKeyword;
+    festivalData();
+    swiperRender();
+});
+
+
+const swiperRender= () => {
+    let swiper = new Swiper(".festival", {
+        slidesPerView: 1,
+        spaceBetween: 15,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+            769: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+            },
+            360: {
+                slidesPerView: 1,
+                spaceBetween: 7,
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: 'fraction',
+                },
+            },
+        },
+      });
+}
 
 let festivialListTag = document.querySelector('#festivial_list');
 
-var swiper = new Swiper(".festival", {
-    slidesPerView: 1,
-    spaceBetween: 15,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    breakpoints: {
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-        },
-        769: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-        },
-        360: {
-            slidesPerView: 1,
-            spaceBetween: 7,
-            pagination: {
-                el: ".swiper-pagination",
-                type: 'fraction',
-            },
-        },
-    },
-  });
-
   const listFilter = () => {
+    fillterList = [];
+
     festivalList.filter(e => {
         let dates = e.date;
         let feativalDate = dates.split(' ~ ');
@@ -162,13 +176,6 @@ var swiper = new Swiper(".festival", {
         return a.place.indexOf(keyword) !== -1 ? -1 : 1;
     })
   }
-
-  const festivalData = () => {
-
-    listFilter()
-    festivalRender()
-  }
-
 
   const festivalRender = () => {
     let listHtml = ``;
@@ -210,6 +217,12 @@ var swiper = new Swiper(".festival", {
     }
 
     festivialListTag.innerHTML = listHtml;
+}
+
+const festivalData = () => {
+    listFilter();
+    festivalRender();
+    swiperRender();
 }
 
 festivalData();

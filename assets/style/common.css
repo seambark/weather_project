@@ -8,6 +8,7 @@
 /* reset */
 * {
 	box-sizing: border-box;
+	/* color: #353535; */
 }
 
 html,
@@ -184,6 +185,7 @@ table {
 }
 
 /* 공통 */
+body{ font-family: 'NanumSquare', sans-serif }
 .no_data {
 	display: flex;
 	justify-content: center;
@@ -193,6 +195,7 @@ table {
 	border-radius: 5px;
 	background-color: #eee;
 	color: #7e7e7e;
+	width: 100%;
 }
 
 input {
@@ -230,7 +233,7 @@ h2 {
 }
 
 .header {
-	padding: 40px 0 25px;
+	padding: 40px 20px 25px;
 	text-align: left;
 }
 .header .open_search {
@@ -256,7 +259,7 @@ h2 {
 }
 
 .main {
-	padding: 25px 0 30px;
+	padding: 25px 20px 30px;
 }
 
 .section {
@@ -273,6 +276,7 @@ h2 {
 .section .inner {
 	overflow: hidden;
 	flex-grow: 1;
+	width: 100%;
 }
 .section:first-child h2 {
 	margin-top: 0;
@@ -640,6 +644,61 @@ footer ul {
 	flex-grow: 1;
 }
 
+/* fashion */
+.clothes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.clothes_icon {
+    height: 180px;
+    width: 300px;
+    border: 2px solid #e0e0e0;
+    margin-right: 30px;
+    margin-left: 10px;
+}
+.clothes_icon > img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.clothes_bubble {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+    height: 180px;
+    width: 900px;
+	padding: 30px 20px;
+	border-radius: .4em;
+	background: #eeeeee;
+    text-align: left;
+}
+
+.clothes_bubble:after {
+	content: '';
+	position: absolute;
+	left: 1px;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 25px solid transparent;
+	border-right-color: #eeeeee;
+	border-left: 0;
+	margin-top: -25px;
+	margin-left: -25px;
+}
+.clothes_recommend{
+    font-size: 17px
+}
+.clothes_phrase{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
 
 @media screen and (max-width: 1023px) {
 	.header {
@@ -713,11 +772,15 @@ footer ul {
 		margin-top: 0;
 		text-align: right;
 	}
+	
 }
 
 @media screen and (max-width: 768px) {
 	body {
 		font-size: 15px;
+	}
+	h2 {
+		font-size: 22px;
 	}
 	button {
 		font-size: 16px;
@@ -806,8 +869,16 @@ footer ul {
 		width: 100%;
 		padding-right: 0;
 	}
-	.m_pull h2 {padding: 0 20px;}
-	.m_pull .inner {margin: 0 -20px;}
+	.m_pull h2 { 
+		padding: 0 20px;
+	}
+	.m_pull {
+		overflow: hidden;
+		margin: 30px -20px 0;
+	}
+	.m_pull .inner {
+		overflow: inherit;
+	}
 	.m_pull .festival  {
 		padding: 0 20px;
 	}
@@ -867,6 +938,32 @@ footer ul {
 	}
 	.weather_item .description {
 		max-width: 70px;
+	}
+
+	/* fashion */
+	.clothes {
+		flex-direction: column;
+    }
+    .clothes_icon {
+		width: 100%;
+		height: auto;
+		margin: 0 0 20px;
+		/* display: none; */
+	}
+	.clothes_bubble {
+		width: 100%;
+		/* margin-left: 20px; */
+	}
+	.clothes_bubble:after {
+		display: none;
+	}
+	.clothes_phrase {
+		font-size: 25px;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+	.clothes_recommend {
+		font-size: 16px;
 	}
 
 	.swiper {
@@ -938,5 +1035,4 @@ footer ul {
 	75% {
 		transform: translate(-67%, 9.8%) scale(-1.2, 1.2);
 	}
-
 }
