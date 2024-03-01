@@ -25,12 +25,18 @@
             <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
         </div>
     </header>
+<<<<<<< HEAD
     <div class="banner bg_rain" id ="current"> 
+=======
+    <div class="banner bg_few_clouds"> 
+>>>>>>> 8fa9e9b471488e3a4abe94b46f1f2a3c01c25b6f
         <!-- 
             banner클래스는 그대로 유지한 상태로9종류 클래스 추가 변경
             bg_clear_sky, bg_few_clouds, bg_scattered_clouds, 
             bg_broken_clouds, bg_shower_rain, bg_rain,
             bg_thunderstorm, bg_snow, bg_mist
+
+            데이터 없을 시 : no_data 클래스 추가
         -->
         <!--현재의 날씨-->
         <div class="present_weather">
@@ -57,11 +63,19 @@
                             <span>83%</span>
                         </span>
                     </div>
+                    <!-- 데이터 없을 시
+                    <div>
+                        <p>날씨 정보가 없습니다.</p>
+                    </div>
+                    -->
                 </div>
                 <!-- //데이터 텍스트 영역 --> 
-                <div class="pollution fair on">
-                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
-                    <span class="status">Fair</span>
+                <div class="pollution no_data"> <!-- 데이터가 없을 시 : no_data --->
+                    <!-- 데이터 없을 시 -->
+                    <span>미세먼지 정보가 없습니다.</span>
+                   
+                    <!-- <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                    <span class="status">Fair</span> -->
                 </div>
             </div>
         </div>
@@ -94,67 +108,72 @@
                 <div class="weather_list">
                 <ul id="weather-info">
                     <li class="weather_item">
-                    <span class="date">Mon</span>
-                    <div class="detail">
-                        <div class="icon">
-                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        <span class="date">Mon</span>
+                        <div class="detail">
+                            <div class="icon">
+                                <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                            </div>
+                            <p class="temperature"><span>7.01</span></p>
+                            <p class="description">overcast clouds</p>
                         </div>
-                        <p class="temperature"><span>7.01</span></p>
-                        <p class="description">overcast clouds</p>
-                    </div>
                     </li>
                     <li class="weather_item">
-                    <span class="date">Tue</span>
-                    <div class="detail">
-                        <div class="icon">
-                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        <span class="date">Tue</span>
+                        <div class="detail">
+                            <div class="icon">
+                                <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                            </div>
+                            <p class="temperature">
+                                <span>-3.58</span>
+                                <span>7.01</span>
+                            </p>
+                            <p class="description">overcast clouds</p>
                         </div>
-                        <p class="temperature">
-                            <span>-3.58</span>
-                            <span>7.01</span>
-                        </p>
-                        <p class="description">overcast clouds</p>
-                    </div>
                     </li>
                     <li class="weather_item">
-                    <span class="date">Wed</span>
-                    <div class="detail">
-                        <div class="icon">
-                            <img src="/assets/img/few_clouds.png" alt="few_clouds">
+                        <span class="date">Wed</span>
+                        <div class="detail">
+                            <div class="icon">
+                                <img src="/assets/img/few_clouds.png" alt="few_clouds">
+                            </div>
+                            <p class="temperature">
+                                <span>-3.58</span>
+                                <span>7.01</span>
+                            </p>
+                            <p class="description">few clouds</p>
                         </div>
-                        <p class="temperature">
-                            <span>-3.58</span>
-                            <span>7.01</span>
-                        </p>
-                        <p class="description">few clouds</p>
-                    </div>
                     </li>
                     <li class="weather_item">
-                    <span class="date">Thu</span>
-                    <div class="detail">
-                        <div class="icon">
-                            <img src="/assets/img/rain.png" alt="rain">
+                        <span class="date">Thu</span>
+                        <div class="detail">
+                            <div class="icon">
+                                <img src="/assets/img/rain.png" alt="rain">
+                            </div>
+                            <p class="temperature">
+                                <span>-3.58</span>
+                                <span>7.01</span>
+                            </p>
+                            <p class="description">rain</p>
                         </div>
-                        <p class="temperature">
-                            <span>-3.58</span>
-                            <span>7.01</span>
-                        </p>
-                        <p class="description">rain</p>
-                    </div>
                     </li>
                     <li class="weather_item">
-                    <span class="date">Fri</span>
-                    <div class="detail">
-                        <div class="icon">
-                            <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                        <span class="date">Fri</span>
+                        <div class="detail">
+                            <div class="icon">
+                                <img src="/assets/img/clear_sky.png" alt="clear_sky">
+                            </div>
+                            <p class="temperature">
+                                <span>-3.58</span>
+                                <span>7.01</span>
+                            </p>
+                            <p class="description">clear sky</p>
                         </div>
-                        <p class="temperature">
-                            <span>-3.58</span>
-                            <span>7.01</span>
-                        </p>
-                        <p class="description">clear sky</p>
-                    </div>
                     </li>
+                    <!-- 데이터 없을 시
+                    <li class="no_data">
+                        <p>날씨 정보가 없습니다.</p>
+                    </li>
+                    -->
                 </ul>
                 </div>
             </div>
@@ -170,6 +189,11 @@
                         <p class="clothes_phrase">"맑은 날씨 따뜻한 햇살! 오늘은 피크닉 가기 좋은 날!"</p><br>
                         <p class="clothes_recommend">*추천 코디: 얇은 셔츠, 면바지, 원피스...</p>
                     </div>
+                    <!-- 
+                    <div class="no_data">
+                        <p>코디 추천 정보가 없습니다.</p>
+                    </div>
+                    -->
                 </div>
             </div>
         </section>

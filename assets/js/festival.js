@@ -210,7 +210,7 @@ let festivialListTag = document.querySelector('#festivial_list');
         listHtml = `
             <li class="swiper-slide">
                 <div class="no_data">
-                    <p>축제정보가 존재하지 않습니다.</p>
+                    <p>축제 정보가 없습니다.</p>
                 </div>
             </li>
         `
