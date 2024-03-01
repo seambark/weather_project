@@ -25,13 +25,19 @@
             <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
         </div>
     </header>
-    <div class="banner bg_rain">
+    <div class="banner bg_rain"> 
+        <!-- 
+            banner클래스는 그대로 유지한 상태로9종류 클래스 추가 변경
+            bg_clear_sky, bg_few_clouds, bg_scattered_clouds, 
+            bg_broken_clouds, bg_shower_rain, bg_rain,
+            bg_thunderstorm, bg_snow, bg_mist
+        -->
         <!--현재의 날씨-->
-        <!-- <h1>날씨 홈페이지 작업</h1> -->
         <div class="present_weather">
             <div class="action_space">
             </div>
             <div class="action_txt">
+                <!-- 데이터 텍스트 영역 --> 
                 <div class="day_weather">
                     <div class="temp">
                         <strong class="temp_num">7.01</strong>
@@ -52,6 +58,7 @@
                         </span>
                     </div>
                 </div>
+                <!-- //데이터 텍스트 영역 --> 
                 <div class="pollution fair on">
                     <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
                     <span class="status">Fair</span>
