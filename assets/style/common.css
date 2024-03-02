@@ -419,16 +419,12 @@ footer ul {
 }
 
 .bg_clear_sky .action_space {
-<<<<<<< HEAD
-	background-image: url("../assets/img/clear_sky.png");
-	background-size: 360px auto;
-	background-position: 72% -44%;
-=======
+
 	position: relative;
 	background-image: url("../img/main-source_img/img/clear_sky-3D.png");
 	background-size: 340px auto;
 	background-position: 77% 0;
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
+
 }
 
 .bg_scattered_clouds .action_space {
@@ -1028,7 +1024,6 @@ footer ul {
 	font-weight: bold;
 	margin-bottom: 20px;
 }
-<<<<<<< HEAD
 
 .currentweather{
 	display: flex;
@@ -1037,7 +1032,6 @@ footer ul {
 	font-size: 50px;
 }
 
-=======
 .bg_thunderstorm .temp,
 .bg_thunderstorm .day_weather .temp_words {
 	color: #fff;
@@ -1051,7 +1045,6 @@ footer ul {
 		color: #465c6f;
 	}
 }
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
 
 @media screen and (max-width: 1023px) {
 	.header {

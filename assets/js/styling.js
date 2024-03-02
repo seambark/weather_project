@@ -383,7 +383,7 @@ if (weather.weather[0].main === "Clouds") {
     
 
 //기온에 따라 옷추천
-    if(c <= 4 ){
+    if(c.toFixed(0) <=4){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_01.png">
@@ -392,7 +392,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"매우 추운 날이네요! 두꺼운 아우터입고 체온을 따뜻히 유지하세요"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 패딩, 두꺼운 코트, 목도리, 기모제품</p>
                     </div>`
-    }else if(c >=5 && c <=8){
+    }else if(c.toFixed(0) >=5 && c.toFixed(0) <=8){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_02.png">
@@ -401,7 +401,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"큰 추위 없는 날씨네요! 하지만 외출 시 보온에 신경 써주세요"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 코트, 가죽자켓, 히트텍, 니트, 레깅스</p>
                     </div>`
-    } else if(c =9 && c <=11){
+    } else if(c.toFixed(0) >=9 && c.toFixed(0) <=11){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_03.png">
@@ -410,7 +410,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"약간 쌀쌀하지만 활동하기 좋은 날이네요! 오늘의 추천 코디는"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹</p>
                     </div>`
-    } else if(c =12 && c <=16){
+    } else if(c.toFixed(0) >=12 && c.toFixed(0) <=16){
         clothes.innerHTML=`
         <div>
         <img src="../assets/img/temperatura_step_01.png">
@@ -419,7 +419,7 @@ if (weather.weather[0].main === "Clouds") {
             <h2>"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</h2>
             <h3>추천 코디 : 자켓, 가디건, 야상, 스타킹, 청바지, 면바지</h3>
         </div>`
-    } else if(c =17 && c <=19){
+    } else if(c.toFixed(0) >=17 && c.toFixed(0) <=19){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_06.png">
@@ -428,7 +428,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"완전한 봄, 가을 날씨입니다! 오늘의 코디는"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 얇은 니트, 맨투맨, 가디건, 청바지</p>
                     </div>`
-    } else if(c =20 && c <=22){
+    } else if(c.toFixed(0) >=20 && c.toFixed(0) <=22){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_05.png">
@@ -437,7 +437,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"멘트??"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 얇은 가디건, 긴팔, 면바지, 청바지</p>
                     </div>`
-    } else if(c =23 && c <=27){
+    } else if(c.toFixed(0) >=23 && c.toFixed(0) <=27){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_07.png">
@@ -446,7 +446,7 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_phrase">"멘트??"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
                     </div>`
-    } else if(c =28){
+    } else if(c.toFixed(0) >=28){
         clothes.innerHTML=`
         <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_08.png">
