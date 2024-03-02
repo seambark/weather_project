@@ -315,12 +315,12 @@ footer ul {
 }
 
 .bg_clear_sky {
-	background-color: #abc4f3
-	/*background-image: url(../img/bg_few_clouds.png"); */
+    background-color: #abc4f3;
+    background-image: url("../asset/img/clear_sky.png");
 }
 .bg_few_clouds {
-	background-color: #6b6d71;
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #c1c7d2;
+	background-image: url("../img/broken_clouds.png");;
 }
 .bg_scattered_clouds {
 	background-color: #c6d3ff;
@@ -331,24 +331,24 @@ footer ul {
 	/* background-image: url("../img/bg_few_clouds.png"); */
 }
 .bg_shower_rain {
-	background-color: #c6d3ff;
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #757882;
+	background-image: url("../img/bg_few_clouds.png");
 }
 .bg_rain {
 	background-color: #c6d3ff;
 	/* background-image: url("../img/bg_few_clouds.png"); */
 }
 .bg_thunderstorm {
-	background-color: #c2c8db;
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #343846;
+	background-image: url("../img/thunderstorm.png");
 }
 .bg_snow {
-	background-color: #c6d3ff;
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #a3d1f0;
+	background-image: url("../img/snow.png");
 }
 .bg_mist {
-	background-color: #c3d1e9;
-	/* background-image: url("../img/bg_few_clouds.png"); */
+	background-color: #a4a6a9;
+	background-image: url("../img/mist.png");
 }
 
 .action_space {
@@ -376,7 +376,7 @@ footer ul {
 }
 
 .bg_clear_sky .action_space {
-	background-image: url("../img/clear_sky.png");
+	background-image: url("../assets/img/clear_sky.png");
 	background-size: 360px auto;
 	background-position: 72% -44%;
 }
@@ -868,6 +868,13 @@ footer ul {
 	margin-bottom: 20px;
 }
 
+.currentweather{
+	display: flex;
+	justify-content: center;
+	padding-top: 200px;
+	font-size: 50px;
+}
+
 
 @media screen and (max-width: 1023px) {
 	.header {
@@ -942,6 +949,12 @@ footer ul {
 		text-align: right;
 	}
 	
+	.currentweather{
+		display: flex;
+		justify-content: center;
+		padding-top: 200px;
+		font-size: 35px;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -963,6 +976,13 @@ footer ul {
 		top: 0;
 		left: 0;
 		z-index: 100;
+	}
+
+	.currentweather{
+		display: flex;
+		justify-content: center;
+		padding-top: 200px;
+		font-size: 15px;
 	}
 
 	.main {

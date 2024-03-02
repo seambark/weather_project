@@ -97,15 +97,13 @@ const searchInput = document.getElementById("location").value
         weather = data;
     render();
     clothes.style.display = "";
-    
-    
+
     }else if(data.cod ==="404"){
         throw new Error(weather.message)
     }
     }catch(error){
         currenterrorRender(error.message)
     }
-
 };
 
 //현재 날씨 렌더링
@@ -119,14 +117,20 @@ const currentweather = async (latitude, longitude) => {
     console.log("sdsd", weather);
 };
 
+
+
     const render = () => {
 
         let c = weather.main.temp - 273.15
         let c_max = weather.main.temp_max - 273.15;
         let c_min = weather.main.temp_min - 273.15;
+        let localTime = new Date(weather.dt * 1000);
+        let currentMonth = localTime.toLocaleString('en', { month: 'long' });
+        let currentDate = localTime.getDate();
     
         let weatherview = 
         `<div class="banner" id ="current"> 
+
         
         <div class="present_weather">
             <div class="action_space">
@@ -140,7 +144,7 @@ const currentweather = async (latitude, longitude) => {
                     </div>
                     <div class="value">
                         <span>${weather.name}</span>
-                        <span>February 27</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
                     </div>
                     <div class="other">
                         <span class="wind">
@@ -159,7 +163,7 @@ const currentweather = async (latitude, longitude) => {
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
 if (weather.weather[0].main === "Clouds") {
-    weatherview = `<div class="banner bg_broken_clouds" id ="current"> 
+    weatherview = `<div class="banner bg_few_clouds" id ="current"> 
         
     <div class="present_weather">
         <div class="action_space">
@@ -173,7 +177,7 @@ if (weather.weather[0].main === "Clouds") {
                 </div>
                 <div class="value">
                     <span>${weather.name}</span>
-                    <span>February 27</span>
+                    <span>${currentMonth}&nbsp${currentDate}</span>
                 </div>
                 <div class="other">
                     <span class="wind">
@@ -204,7 +208,7 @@ if (weather.weather[0].main === "Clouds") {
                 </div>
                 <div class="value">
                     <span>${weather.name}</span>
-                    <span>February 27</span>
+                    <span>${currentMonth}&nbsp${currentDate}</span>
                 </div>
                 <div class="other">
                     <span class="wind">
@@ -235,7 +239,7 @@ if (weather.weather[0].main === "Clouds") {
                         </div>
                         <div class="value">
                             <span>${weather.name}</span>
-                            <span>February 27</span>
+                            <span>${currentMonth}&nbsp${currentDate}</span>
                         </div>
                         <div class="other">
                             <span class="wind">
@@ -252,7 +256,7 @@ if (weather.weather[0].main === "Clouds") {
             </div>
         </div>`
         }else if(weather.weather[0].main === "Rain"){
-            weatherview =`<div class="banner bg_rain" id ="current"> 
+            weatherview =`<div class="banner bg_shower_rain" id ="current"> 
         
             <div class="present_weather">
                 <div class="action_space">
@@ -266,7 +270,7 @@ if (weather.weather[0].main === "Clouds") {
                         </div>
                         <div class="value">
                             <span>${weather.name}</span>
-                            <span>February 27</span>
+                            <span>${currentMonth}&nbsp${currentDate}</span>
                         </div>
                         <div class="other">
                             <span class="wind">
@@ -297,7 +301,7 @@ if (weather.weather[0].main === "Clouds") {
                         </div>
                         <div class="value">
                             <span>${weather.name}</span>
-                            <span>February 27</span>
+                            <span>${currentMonth}&nbsp${currentDate}</span>
                         </div>
                         <div class="other">
                             <span class="wind">
@@ -328,7 +332,7 @@ if (weather.weather[0].main === "Clouds") {
                         </div>
                         <div class="value">
                             <span>${weather.name}</span>
-                            <span>February 27</span>
+                            <span>${currentMonth}&nbsp${currentDate}</span>
                         </div>
                         <div class="other">
                             <span class="wind">
@@ -359,7 +363,7 @@ if (weather.weather[0].main === "Clouds") {
                         </div>
                         <div class="value">
                             <span>${weather.name}</span>
-                            <span>February 27</span>
+                            <span>${currentMonth}&nbsp${currentDate}</span>
                         </div>
                         <div class="other">
                             <span class="wind">
@@ -459,8 +463,11 @@ if (weather.weather[0].main === "Clouds") {
 //에러 렌더링
 
 const currenterrorRender=(errorMessage)=>{
-    const errorHtml =`<div>
-        "지역을 찾을 수 없습니다. 정확한 지역을 입력하세요"
+    const errorHtml =`
+    <div class="currentweather">
+        <div>
+            "지역을 찾을 수 없습니다. 정확한 지역을 입력하세요"
+        </div>
     </div>`
 
     clothes.style.display = "none";
