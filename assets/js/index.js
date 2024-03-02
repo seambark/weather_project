@@ -1,5 +1,6 @@
 let openSearch = document.querySelector(".open_search");
 let header = document.querySelector(".header");
+let noLocation = false;
 
 openSearch.addEventListener("click", function () {
   header.classList.toggle("active");
@@ -130,6 +131,7 @@ const userposition = async (position) => {
 
 const userpositionError = () => {
   alert("현재 위치를 찾을 수 없습니다");
+  noLocation = true;
 };
 
 const getLocation = () => {
