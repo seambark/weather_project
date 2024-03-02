@@ -4,25 +4,6 @@ weatherInfoElement = document.getElementById('weather-info');
 
 
 
-async function getCoordinates(city) {
-  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
-  const response = await fetch(geocodingUrl);
-
-  if (!response.ok) {
-    throw new Error('Failed to get coordinates');
-  }
-
-  const geocodingData = await response.json();
-  if (geocodingData && geocodingData.length > 0) {
-    return {
-      lat: geocodingData[0].lat,
-      lon: geocodingData[0].lon
-    };
-  } else {
-    return null;
-  }
-}
-
 async function get5DayForecast(lat, lon) {
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=${config.apikey}`;
   const response = await fetch(forecastUrl);

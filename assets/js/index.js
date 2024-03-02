@@ -43,40 +43,62 @@ searchButton.addEventListener('click', async () => {
     // styling rendering
 
     // airPollution rendering
-      getPollutionInfo(coordinates.lat, coordinates.lon)
+    getPollutionInfo(coordinates.lat, coordinates.lon)
     // festival renndering
-      festivalData(city);
-      swiperRender();
+    festivalData(city);
+    swiperRender();
 
 
-    } catch (error) {
-      console.error(error);
-      alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
-        title: '알림',
-        icon: 'warning',
-      });
-    }
-  });
+  } catch (error) {
+    console.error(error);
+    alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
+      title: '알림',
+      icon: 'warning',
+    });
+  }
+});
+
+
+// 도시를 검색하면 도시의 위도, 경도를 알려줌
+async function getCoordinates(city) {
+  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
+  const response = await fetch(geocodingUrl);
+
+  if (!response.ok) {
+    throw new Error('Failed to get coordinates');
+  }
+
+  const geocodingData = await response.json();
+  if (geocodingData && geocodingData.length > 0) {
+    return {
+      lat: geocodingData[0].lat,
+      lon: geocodingData[0].lon
+    };
+  } else {
+    return null;
+  }
+}
+
 
 //유저의 현재 위치에 맞게 현재날씨를 보여줌
 const userposition = async (position) => {
-    const lat = position.coords.latitude;
-    const lng = position.coords.longitude;
-    console.log("현재 위치", lat, lng);
-    await currentweather(lat, lng);
-    await getPollutionInfo(lat,lng);
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+  console.log("현재 위치", lat, lng);
+  await currentweather(lat, lng);
+  await getPollutionInfo(lat, lng);
 };
 
 const userpositionError = () => {
-    alert("현재 위치를 찾을 수 없습니다");
+  alert("현재 위치를 찾을 수 없습니다");
 };
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(userposition, userpositionError);
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(userposition, userpositionError);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
 };
 
 getLocation();
