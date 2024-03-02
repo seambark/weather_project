@@ -38,8 +38,8 @@ searchButton.addEventListener('click', async () => {
       return;
     }
     // call 5 day rendering
-    const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-    renderWeather(weatherData, weatherInfoElement);
+    const call5DayWeatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
+    renderWeather(call5DayWeatherData, weatherInfoElement);
     // styling rendering
 
     // airPollution rendering
