@@ -92,7 +92,7 @@ const searchInput = document.getElementById("location").value
 const encodedSearchInput = encodeURIComponent(searchInput);
         console.log("keyword", searchInput);
         
-        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${encodedSearchInput}&appid=${config.apikey}`);
+        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&q=${encodedSearchInput}&appid=${config.apikey}`);
 
     const weatherdata = await fetch(url)
     const data = await weatherdata.json()
@@ -107,7 +107,7 @@ const encodedSearchInput = encodeURIComponent(searchInput);
         throw new Error(weather.message)
     }
     }catch(error){
-        alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
+        //alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
         //currenterrorRender(error.message)
     }
 };

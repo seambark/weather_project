@@ -4,7 +4,6 @@ const airPollutionInfoHTML = document.getElementById('air-pollution-info');
 //대기오염 정보 보여주는 element - mobile
 const airPollutionInfoMobileHTML = document.getElementById('air-pollution-info-mobile')
 
-
 async function getPollutionInfo(lat, lng) {
   //대기오염 정보 조회
   const airPollutionInfo = await getAirPollutionInfo(lat,lng);
@@ -17,9 +16,8 @@ async function getPollutionInfo(lat, lng) {
       const pollutionLevels = ['good', 'fair', 'moderate', 'poor', 'very_poor'];
       for (let level of pollutionLevels) {
           const element = document.getElementsByClassName('pollution ' + level)[0];
-          const element2 = document.getElementsByClassName('pollution ' + level)[0]
           element.classList.remove('on');
-          element2.classList.remove('on');
+          airPollutionInfoMobileHTML.classList.remove('on');
       }
   }
 
@@ -57,25 +55,6 @@ async function getAirPollutionInfo(lat, lng) {
   return airPollutionInfo;
 }
 
-async function getCoordinatesInfo(city) {
-  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
-  const response = await fetch(geocodingUrl);
-
-  if (!response.ok) {
-    throw new Error('Failed to get coordinates');
-  }
-
-  const geocodingData = await response.json();
-  if (geocodingData && geocodingData.length > 0) {
-    return {
-      lat: geocodingData[0].lat,
-      lon: geocodingData[0].lon,
-    };
-  } else {
-    return null;
-  }
-}
-
 function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollutionInfoHTML) {
   const pollutionLevels = ['good', 'fair', 'moderate', 'poor', 'very_poor'];
   let html = '';
@@ -85,17 +64,20 @@ function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollu
       for(let i=0; pollutionLevels.length > i; i++) {
         let level = pollutionLevels[i]
         let renderLevel = renderLevels[i]
-        html += `<div class="pollution ${level}`;
-        if (airPollutionIndicator === level) {
-          html += ` on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span>`;
-          html2 += `<div class="pollution ${level} on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span>`;
+        if(noLocation) {
+          html += `<div class="pollution ${level}">`;
+          html2 += `<div class="pollution"><span>미세먼지 정보가 없습니다.</span></div>`
         } else {
-          html += `">`;
+          html += `<div class="pollution ${level}`;
+          if (airPollutionIndicator === level) {
+            html += ` on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span>`;
+            html2 += `<div class="pollution ${level} on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span><span class="status">${renderLevel}</span></div>`;
+          } else {
+            html += `">`;
+          }
         }
         html += `<span class="status">${renderLevel}</span></div>`;
-        html2 += `<span class="status">${renderLevel}</span></div>`;
       }
   airPollutionInfoHTML.innerHTML = html;
-  airPollutionInfoMobileHTML.innerHTML = html2;
+  document.getElementById('air-pollution-info-mobile').innerHTML = html2;
 }
-
