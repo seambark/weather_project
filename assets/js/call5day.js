@@ -1,46 +1,49 @@
 
+let locationInput, searchButton, weatherInfoElement;
+
 document.addEventListener('DOMContentLoaded', function () {
-  // const locationInput = document.getElementById('location');
-  // const searchButton = document.getElementById('search');
-  const weatherInfoElement = document.getElementById('weather-info');
+  locationInput = document.getElementById('location');
+  searchButton = document.getElementById('searchButton');
+  weatherInfoElement = document.getElementById('weather-info');
 
-  //  locationInput.addEventListener('keydown', async (event) => {
-  //    if (event.key === 'Enter') {
-  //      searchButton.click();
-  //    }
-  //  });
+  locationInput.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+      searchButton.click();
+    }
+  });
 
-  //  searchButton.addEventListener('click', async () => {
-  //    const city = locationInput.value.trim();
+  searchButton.addEventListener('click', async () => {
+    const city = locationInput.value.trim();
 
-  //    if (!city) {
-  //      alert('도시 이름을 입력해 주세요.', {
-  //        title: '알림',
-  //        icon: 'warning',
-  //      });
-  //      return;
-  //    }
+    if (!city) {
+      alert('도시 이름을 입력해 주세요.', {
+        title: '알림',
+        icon: 'warning',
+      });
+      return;
+    }
 
-  //    try {
-  //      const coordinates = await getCoordinates(city);
-  //      if (!coordinates) {
-  //        alert('도시를 찾을 수 없습니다.', {
-  //          title: '알림',
-  //          icon: 'warning',
-  //        });
-  //        return;
-  //      }
-  //      const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-  //      renderWeather(weatherData, weatherInfoElement);
-  //    } catch (error) {
-  //      console.error(error);
-  //      alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
-  //        title: '알림',
-  //        icon: 'warning',
-  //      });
-  //    }
-  //  });
+    try {
+      const coordinates = await getCoordinates(city);
+      if (!coordinates) {
+        alert('도시를 찾을 수 없습니다.', {
+          title: '알림',
+          icon: 'warning',
+        });
+        return;
+      }
+      const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
+      renderWeather(weatherData, weatherInfoElement);
+    } catch (error) {
+      console.error(error);
+      alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
+        title: '알림',
+        icon: 'warning',
+      });
+    }
+  });
 });
+
 
 async function getCoordinates(city) {
   const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
@@ -111,7 +114,7 @@ function aggregateDailyData(list) {
   Object.keys(dailyData).forEach(date => {
     const data = dailyData[date];
     const total = (array) => array.reduce((sum, x) => sum + x, 0);
-    
+
 
     data.highTemp = Math.max(...data.temps);
     data.lowTemp = Math.min(...data.temps);
@@ -139,7 +142,7 @@ function aggregateDailyData(list) {
       data.weatherIconImg = 'scattered_clouds';
     } else if (data.weatherDescription === 'broken clouds' | data.weatherDescription === 'overcast clouds') {
       data.weatherIconImg = 'broken_clouds';
-    } else if (data.weatherDescription === 'shower rain' | data.weatherDescription.includes('Drizzle'))  {
+    } else if (data.weatherDescription === 'shower rain' | data.weatherDescription.includes('Drizzle')) {
       data.weatherIconImg = 'shower_rain';
     } else if (data.weatherDescription === 'rain' | rainConditions.some(condition => data.weatherDescription.includes(condition))) {
       data.weatherIconImg = 'rain';
@@ -147,11 +150,11 @@ function aggregateDailyData(list) {
       data.weatherIconImg = 'thunderstorm';
     } else if (data.weatherDescription.includes('snow') | data.weatherDescription.includes('sleet') | data.weatherDescription.includes('freezing')) {
       data.weatherIconImg = 'snow';
-    } else if (mistConditions.some(condition => data.weatherDescription.includes(condition))) { 
+    } else if (mistConditions.some(condition => data.weatherDescription.includes(condition))) {
       data.weatherIconImg = 'mist';
-    }        
-    
-    });
+    }
+
+  });
 
   return dailyData;
 }
@@ -163,10 +166,10 @@ function renderWeather(weatherData, weatherInfoElement) {
   // Map over each day and generate the HTML
   const dailyForecasts = Object.keys(dailyData).map(day => {
     const data = dailyData[day];
-    
+
     return `
     <li class="weather_item">
-    <span class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short'})}</span>
+    <span class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short' })}</span>
     <div class="detail">
         <div class="icon">
             <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
