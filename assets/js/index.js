@@ -125,7 +125,7 @@ const userposition = async (position) => {
   const lng = position.coords.longitude;
   console.log("현재 위치", lat, lng);
   await currentweather(lat, lng);
-  fetchAndRender5DayForecast(lat,lng,weatherInfoElement)
+  await fetchAndRender5DayForecast(lat,lng,weatherInfoElement)
   await getPollutionInfo(lat, lng);
 };
 
