@@ -315,21 +315,14 @@ footer ul {
 }
 
 .bg_clear_sky {
-<<<<<<< HEAD
     background-color: #abc4f3;
-    background-image: url("../asset/img/clear_sky.png");
+    background-image: url("../img/main-source_img/clear_sky.png");
 }
+
 .bg_few_clouds {
-	background-color: #c1c7d2;
-	background-image: url("../img/broken_clouds.png");;
-=======
-	background-color: #abd6f3;
-	/* background-image: url("../img/main-source_img/img/clear_sky-bg.png"); */
-}
-.bg_few_clouds {
-	background-color: #a5c7ff;
+	background-color: #989b9f;
 	background-image: url("../img/main-source_img/img/few_clouds_bg.png");
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
+
 }
 .bg_scattered_clouds {
 	background-color: #c6d3ff;
@@ -340,39 +333,25 @@ footer ul {
 	background-image: url("../img/main-source_img/img/broken_clouds_bg.png");
 }
 .bg_shower_rain {
-<<<<<<< HEAD
-	background-color: #757882;
-	background-image: url("../img/bg_few_clouds.png");
-=======
-	background-color: #b2bde2;
-	/* background-image: url("../img/bg_few_clouds.png"); */
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
+	background-color: #7c8299;
+	background-image: url("../img/main-source_img/bg_few_clouds.png");
 }
 .bg_rain {
 	background-color: #b3dcfc;
 	/* background-image: url("../img/main-source_img/img/rain_bg.png"); */
 }
 .bg_thunderstorm {
-<<<<<<< HEAD
+
 	background-color: #343846;
 	background-image: url("../img/thunderstorm.png");
-=======
-	background-color: #768c9e;
-	background-image: url("../img/main-source_img/img/thunderstorm_bg.png");
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
 }
 .bg_snow {
 	background-color: #a3d1f0;
 	background-image: url("../img/snow.png");
 }
 .bg_mist {
-<<<<<<< HEAD
 	background-color: #a4a6a9;
 	background-image: url("../img/mist.png");
-=======
-	background-color: #dadde6;
-	background-image: url("../img/main-source_img/img/mist_bg.png");
->>>>>>> f67323d0c5065344eb96131ec9f3ccbff1314931
 }
 
 .action_space {
