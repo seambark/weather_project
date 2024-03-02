@@ -147,3 +147,17 @@ function renderWeather(call5DayWeatherData, weatherInfoElement) {
 
   weatherInfoElement.innerHTML = dailyForecasts;
 }
+
+
+async function fetchAndRender5DayForecast(lat, lon, weatherInfoElement) {
+  try {
+    const weatherData = await get5DayForecast(lat, lon);
+    renderWeather(weatherData, weatherInfoElement);
+  } catch (error) {
+    console.error("Failed to fetch or render 5-day forecast:", error);
+    alert('fetchAndRender5DayForecast에 실패했습니다. 다시 시도해 주세요', {
+      title: '알림',
+      icon: 'warning',
+    });
+  }
+}

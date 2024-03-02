@@ -39,8 +39,7 @@ searchButton.addEventListener('click', async () => {
       return;
     }
     // call 5 day rendering
-    const call5DayWeatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-    renderWeather(call5DayWeatherData, weatherInfoElement);
+    fetchAndRender5DayForecast(coordinates.lat, coordinates.lon, weatherInfoElement);
     
   // styling rendering
     const locationinput= async()=>{
