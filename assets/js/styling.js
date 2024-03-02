@@ -154,7 +154,7 @@ const currentweather = async (latitude, longitude) => {
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
 if (weather.weather[0].main === "Clouds") {
-    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
+    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
     currentbener.classList.add("bg_few_clouds")
     weatherview = 
     `<div class="temp">
@@ -177,7 +177,7 @@ if (weather.weather[0].main === "Clouds") {
     </div>`;
 }else if (weather.weather[0].main === "Clear") {
     currentbener.classList.add("bg_clear_sky")
-    currentbener.classList.remove("bg_few_clouds");
+    currentbener.classList.remove("bg_few_clouds","bg_shower_rain","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
     weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -199,7 +199,7 @@ if (weather.weather[0].main === "Clouds") {
                     </div>`;
         }else if (weather.weather[0].main === "shower rain") {
             currentbener.classList.add("bg_shower_rain")
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky");
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
             weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -221,7 +221,7 @@ if (weather.weather[0].main === "Clouds") {
                     </div>`;
                 }
         else if(weather.weather[0].main === "Thunderstorm"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain")
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_rain","bg_mist","bg_shower_rain","bg_snow")
             currentbener.classList.add("bg_thunderstorm")
             weatherview = 
                     `<div class="temp">
@@ -243,7 +243,7 @@ if (weather.weather[0].main === "Clouds") {
                         </span>
                     </div>`;
         }else if(weather.weather[0].main === "Rain"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm")
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_mist","bg_shower_rain","bg_snow")
             currentbener.classList.add("bg_rain")
             weatherview = 
                     `<div class="temp">
