@@ -2,6 +2,9 @@
 let weather = {};
 let clothes = document.getElementById("clothes")
 let addbutton = document.getElementById("searchButton")
+let currentbener =document.getElementById("current")
+let bannercurrent =document.getElementById("bannercurrent")
+
 
 //빈값이면 버튼 블락
 
@@ -23,47 +26,47 @@ let addbutton = document.getElementById("searchButton")
 
 //->block 대신 alert 뜨게 만듦
 
-document.addEventListener('DOMContentLoaded', function () {
-    const locationInput = document.getElementById('location');
-    const searchButton = document.getElementById('searchButton');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const locationInput = document.getElementById('location');
+//     const searchButton = document.getElementById('searchButton');
   
-     locationInput.addEventListener('keydown', async (event) => {
-       if (event.key === 'Enter') {
-         searchButton.click();
-       }
-     });
+//      locationInput.addEventListener('keydown', async (event) => {
+//        if (event.key === 'Enter') {
+//          searchButton.click();
+//        }
+//      });
   
-     searchButton.addEventListener('click', async () => {
-       const city = locationInput.value.trim();
+//      searchButton.addEventListener('click', async () => {
+//        const city = locationInput.value.trim();
   
-       if (!city) {
-         alert('도시 이름을 입력해 주세요.', {
-           title: '알림',
-           icon: 'warning',
-         });
-         return;
-       }
+//        if (!city) {
+//          alert('도시 이름을 입력해 주세요.', {
+//            title: '알림',
+//            icon: 'warning',
+//          });
+//          return;
+//        }
 
-       try {
-             const coordinates = await getCoordinates(city);
-             if (!coordinates) {
-               alert('도시를 찾을 수 없습니다.', {
-                 title: '알림',
-                 icon: 'warning',
-               });
-               return;
-             }
-             const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-             renderWeather(weatherData, weatherInfoElement);
-           } catch (error) {
-             console.error(error);
-             alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
-               title: '알림',
-               icon: 'warning',
-             });
-           }
-         });
-     });
+//        try {
+//              const coordinates = await getCoordinates(city);
+//              if (!coordinates) {
+//                alert('도시를 찾을 수 없습니다.', {
+//                  title: '알림',
+//                  icon: 'warning',
+//                });
+//                return;
+//              }
+//              const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
+//              renderWeather(weatherData, weatherInfoElement);
+//            } catch (error) {
+//              console.error(error);
+//              alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
+//                title: '알림',
+//                icon: 'warning',
+//              });
+//            }
+//          });
+//      });
   
 
 //enter 입력
@@ -81,14 +84,16 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 // );
 
-
 //지역 검색 날씨정보
 
 const locationinput= async()=>{
     try{
 const searchInput = document.getElementById("location").value
-    console.log("keyword", searchInput)
-    const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=${config.apikey}`);
+const encodedSearchInput = encodeURIComponent(searchInput);
+        console.log("keyword", searchInput);
+        
+        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${encodedSearchInput}&appid=${config.apikey}`);
+
     const weatherdata = await fetch(url)
     const data = await weatherdata.json()
  
@@ -102,7 +107,8 @@ const searchInput = document.getElementById("location").value
         throw new Error(weather.message)
     }
     }catch(error){
-        currenterrorRender(error.message)
+        alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
+        //currenterrorRender(error.message)
     }
 };
 
@@ -119,26 +125,15 @@ const currentweather = async (latitude, longitude) => {
 
 
 
-    const render = () => {
+    let render = () => {
 
         let c = weather.main.temp - 273.15
-        let c_max = weather.main.temp_max - 273.15;
-        let c_min = weather.main.temp_min - 273.15;
         let localTime = new Date(weather.dt * 1000);
         let currentMonth = localTime.toLocaleString('en', { month: 'long' });
         let currentDate = localTime.getDate();
     
         let weatherview = 
-        `<div class="banner" id ="current"> 
-
-        
-        <div class="present_weather">
-            <div class="action_space">
-            </div>
-            <div class="action_txt">
-                <!-- 데이터 텍스트 영역 --> 
-                <div class="day_weather">
-                    <div class="temp">
+                    `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
                         <span class="temp_words">${weather.weather[0].main}</span>
                     </div>
@@ -155,231 +150,188 @@ const currentweather = async (latitude, longitude) => {
                             <span>Humidity</span>
                             <span>${weather.main.humidity}%</span>
                         </span>
-                    </div>
-                </div>   
-            </div>
-        </div>
-    </div>`;
+                    </div>`;
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
 if (weather.weather[0].main === "Clouds") {
-    weatherview = `<div class="banner bg_few_clouds" id ="current"> 
-        
-    <div class="present_weather">
-        <div class="action_space">
-        </div>
-        <div class="action_txt">
-            <!-- 데이터 텍스트 영역 --> 
-            <div class="day_weather">
-                <div class="temp">
-                    <strong class="temp_num">${c.toFixed(0)}</strong>
-                    <span class="temp_words">${weather.weather[0].main}</span>
-                </div>
-                <div class="value">
-                    <span>${weather.name}</span>
-                    <span>${currentMonth}&nbsp${currentDate}</span>
-                </div>
-                <div class="other">
-                    <span class="wind">
-                        <span>Wind</span>
-                        <span>${weather.wind.speed}</span>
-                    </span>
-                    <span class="humidity">
-                        <span>Humidity</span>
-                        <span>${weather.main.humidity}%</span>
-                    </span>
-                </div>
-            </div>   
-        </div>
+    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
+    currentbener.classList.add("bg_few_clouds")
+    weatherview = 
+    `<div class="temp">
+        <strong class="temp_num">${c.toFixed(0)}</strong>
+        <span class="temp_words">${weather.weather[0].main}</span>
     </div>
-</div>`;
-} else if (weather.weather[0].main === "Clear") {
-    weatherview = `<div class="banner bg_clear_sky" id ="current"> 
-        
-    <div class="present_weather">
-        <div class="action_space">
-        </div>
-        <div class="action_txt">
-            <!-- 데이터 텍스트 영역 --> 
-            <div class="day_weather">
-                <div class="temp">
-                    <strong class="temp_num">${c.toFixed(0)}</strong>
-                    <span class="temp_words">${weather.weather[0].main}</span>
-                </div>
-                <div class="value">
-                    <span>${weather.name}</span>
-                    <span>${currentMonth}&nbsp${currentDate}</span>
-                </div>
-                <div class="other">
-                    <span class="wind">
-                        <span>Wind</span>
-                        <span>${weather.wind.speed}</span>
-                    </span>
-                    <span class="humidity">
-                        <span>Humidity</span>
-                        <span>${weather.main.humidity}%</span>
-                    </span>
-                </div>
-            </div>   
-        </div>
+    <div class="value">
+        <span>${weather.name}</span>
+        <span>${currentMonth}&nbsp${currentDate}</span>
     </div>
-</div>`;
-        }else if(weather.weather[0].main === "Thunderstorm"){
-            weatherview =`<div class="banner bg_thunderstorm" id ="current"> 
-        
-            <div class="present_weather">
-                <div class="action_space">
-                </div>
-                <div class="action_txt">
-                    <!-- 데이터 텍스트 영역 --> 
-                    <div class="day_weather">
-                        <div class="temp">
-                            <strong class="temp_num">${c.toFixed(0)}</strong>
-                            <span class="temp_words">${weather.weather[0].main}</span>
-                        </div>
-                        <div class="value">
-                            <span>${weather.name}</span>
-                            <span>${currentMonth}&nbsp${currentDate}</span>
-                        </div>
-                        <div class="other">
-                            <span class="wind">
-                                <span>Wind</span>
-                                <span>${weather.wind.speed}</span>
-                            </span>
-                            <span class="humidity">
-                                <span>Humidity</span>
-                                <span>${weather.main.humidity}%</span>
-                            </span>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-        </div>`
+    <div class="other">
+        <span class="wind">
+            <span>Wind</span>
+            <span>${weather.wind.speed}</span>
+        </span>
+        <span class="humidity">
+            <span>Humidity</span>
+            <span>${weather.main.humidity}%</span>
+        </span>
+    </div>`;
+}else if (weather.weather[0].main === "Clear") {
+    currentbener.classList.add("bg_clear_sky")
+    currentbener.classList.remove("bg_few_clouds");
+    weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
+        }else if (weather.weather[0].main === "shower rain") {
+            currentbener.classList.add("bg_shower_rain")
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky");
+            weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
+                }
+        else if(weather.weather[0].main === "Thunderstorm"){
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain")
+            currentbener.classList.add("bg_thunderstorm")
+            weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
         }else if(weather.weather[0].main === "Rain"){
-            weatherview =`<div class="banner bg_shower_rain" id ="current"> 
-        
-            <div class="present_weather">
-                <div class="action_space">
-                </div>
-                <div class="action_txt">
-                    <!-- 데이터 텍스트 영역 --> 
-                    <div class="day_weather">
-                        <div class="temp">
-                            <strong class="temp_num">${c.toFixed(0)}</strong>
-                            <span class="temp_words">${weather.weather[0].main}</span>
-                        </div>
-                        <div class="value">
-                            <span>${weather.name}</span>
-                            <span>${currentMonth}&nbsp${currentDate}</span>
-                        </div>
-                        <div class="other">
-                            <span class="wind">
-                                <span>Wind</span>
-                                <span>${weather.wind.speed}</span>
-                            </span>
-                            <span class="humidity">
-                                <span>Humidity</span>
-                                <span>${weather.main.humidity}%</span>
-                            </span>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-        </div>`
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm")
+            currentbener.classList.add("bg_rain")
+            weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
         }else if(weather.weather[0].main === "Snow"){
-            weatherview =`<div class="banner bg_snow" id ="current"> 
-        
-            <div class="present_weather">
-                <div class="action_space">
-                </div>
-                <div class="action_txt">
-                    <!-- 데이터 텍스트 영역 --> 
-                    <div class="day_weather">
-                        <div class="temp">
-                            <strong class="temp_num">${c.toFixed(0)}</strong>
-                            <span class="temp_words">${weather.weather[0].main}</span>
-                        </div>
-                        <div class="value">
-                            <span>${weather.name}</span>
-                            <span>${currentMonth}&nbsp${currentDate}</span>
-                        </div>
-                        <div class="other">
-                            <span class="wind">
-                                <span>Wind</span>
-                                <span>${weather.wind.speed}</span>
-                            </span>
-                            <span class="humidity">
-                                <span>Humidity</span>
-                                <span>${weather.main.humidity}%</span>
-                            </span>
-                        </div>
-                    </div>   
-                </div>
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain")
+            currentbener.classList.add("bg_snow")
+            weatherview = 
+            `<div class="temp">
+                <strong class="temp_num">${c.toFixed(0)}</strong>
+                <span class="temp_words">${weather.weather[0].main}</span>
             </div>
-        </div>`
+            <div class="value">
+                <span>${weather.name}</span>
+                <span>${currentMonth}&nbsp${currentDate}</span>
+            </div>
+            <div class="other">
+                <span class="wind">
+                    <span>Wind</span>
+                    <span>${weather.wind.speed}</span>
+                </span>
+                <span class="humidity">
+                    <span>Humidity</span>
+                    <span>${weather.main.humidity}%</span>
+                </span>
+            </div>`;
         }else if(weather.weather[0].main === "Mist"){
-            weatherview =`<div class="banner bg_mist" id ="current"> 
-        
-            <div class="present_weather">
-                <div class="action_space">
-                </div>
-                <div class="action_txt">
-                    <!-- 데이터 텍스트 영역 --> 
-                    <div class="day_weather">
-                        <div class="temp">
-                            <strong class="temp_num">${c.toFixed(0)}</strong>
-                            <span class="temp_words">${weather.weather[0].main}</span>
-                        </div>
-                        <div class="value">
-                            <span>${weather.name}</span>
-                            <span>${currentMonth}&nbsp${currentDate}</span>
-                        </div>
-                        <div class="other">
-                            <span class="wind">
-                                <span>Wind</span>
-                                <span>${weather.wind.speed}</span>
-                            </span>
-                            <span class="humidity">
-                                <span>Humidity</span>
-                                <span>${weather.main.humidity}%</span>
-                            </span>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-        </div>`
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
+            currentbener.classList.add("bg_mist")
+            weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
         }else if(weather.weather[0].main === "Fog"){
-            weatherview =`<div class="banner bg_mist" id ="current"> 
-        
-            <div class="present_weather">
-                <div class="action_space">
-                </div>
-                <div class="action_txt">
-                    <!-- 데이터 텍스트 영역 --> 
-                    <div class="day_weather">
-                        <div class="temp">
-                            <strong class="temp_num">${c.toFixed(0)}</strong>
-                            <span class="temp_words">${weather.weather[0].main}</span>
-                        </div>
-                        <div class="value">
-                            <span>${weather.name}</span>
-                            <span>${currentMonth}&nbsp${currentDate}</span>
-                        </div>
-                        <div class="other">
-                            <span class="wind">
-                                <span>Wind</span>
-                                <span>${weather.wind.speed}</span>
-                            </span>
-                            <span class="humidity">
-                                <span>Humidity</span>
-                                <span>${weather.main.humidity}%</span>
-                            </span>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-        </div>`
+            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
+            currentbener.classList.add("bg_mist")
+            weatherview = 
+                    `<div class="temp">
+                        <strong class="temp_num">${c.toFixed(0)}</strong>
+                        <span class="temp_words">${weather.weather[0].main}</span>
+                    </div>
+                    <div class="value">
+                        <span>${weather.name}</span>
+                        <span>${currentMonth}&nbsp${currentDate}</span>
+                    </div>
+                    <div class="other">
+                        <span class="wind">
+                            <span>Wind</span>
+                            <span>${weather.wind.speed}</span>
+                        </span>
+                        <span class="humidity">
+                            <span>Humidity</span>
+                            <span>${weather.main.humidity}%</span>
+                        </span>
+                    </div>`;
         };
+        
     
 
 //기온에 따라 옷추천
@@ -457,7 +409,7 @@ if (weather.weather[0].main === "Clouds") {
                     </div>`
     } ;
 
-    document.getElementById("current").innerHTML = weatherview;
+    document.getElementById("bannercurrent").innerHTML = weatherview;
 };
 
 //에러 렌더링
