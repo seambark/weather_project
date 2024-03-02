@@ -316,11 +316,7 @@ footer ul {
 
 .bg_clear_sky {
     background-color: #abc4f3;
-<<<<<<< HEAD
     background-image: url("../img/banner/clear_sky_bg.png");
-=======
-    /* background-image: url("../img/main-source_img/img/clear_sky-bg.png"); */
->>>>>>> 1a933d5213cdbb3bc9a89304c15afd3f09b776b7
 }
 
 .bg_few_clouds {
@@ -338,11 +334,7 @@ footer ul {
 }
 .bg_shower_rain {
 	background-color: #7c8299;
-<<<<<<< HEAD
 	background-image: url("../img/banner/shower_rain_bg.png");
-=======
-	background-image: url("../img/main-source_img/img/shower_rain_bg_2.png");
->>>>>>> 1a933d5213cdbb3bc9a89304c15afd3f09b776b7
 }
 .bg_rain {
 	background-color: #b3dcfc;
