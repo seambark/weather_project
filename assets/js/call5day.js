@@ -108,7 +108,16 @@ function aggregateDailyData(list) {
 
 function renderWeather(call5DayWeatherData, weatherInfoElement) {
   const dailyData = aggregateDailyData(call5DayWeatherData.list);
-
+  if (Object.keys(dailyData).length === 0) {
+    // 날씨 정보가 없을 경우의 HTML
+    weatherInfoElement.innerHTML = `
+      <li class="no_data">
+        <p>날씨 정보가 없습니다.</p>
+      </li>
+    `;
+    return; // 함수 종료
+  }
+  
   // Map over each day and generate the HTML
   const dailyForecasts = Object.keys(dailyData).map(day => {
     const data = dailyData[day];
