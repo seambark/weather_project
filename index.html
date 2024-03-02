@@ -22,7 +22,7 @@
         <button type="button" class="open_search">검색창 열기</button>
         <div class="input_area">
             <input type="text" class="search_bar" id="location" placeholder="오늘의 날씨를 알고싶은 지역을 입력해주세요.">
-            <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
+            <button class="search_btn" id="searchButton"  onclick="locationinput()">검색</button>
         </div>
     </header>
     <div class="banner bg_few_clouds" id ="current"> 
@@ -65,14 +65,15 @@
                     </div>
                     -->
                 </div>
-                <!-- //데이터 텍스트 영역 --> 
-                <div class="pollution fair on"> <!-- 데이터가 없을 시 : no_data --->
-                    <!-- 데이터 없을 시 -->
-                    <!-- <span>미세먼지 정보가 없습니다.</span> -->
-                   
-                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
-                    <span class="status">Fair</span>
-                </div>
+                <!-- //데이터 텍스트 영역 -->
+                <div id="air-pollution-info-mobile">
+                    <div class="pollution fair on"> <!-- 데이터가 없을 시 : no_data --->
+                        <!-- 데이터 없을 시 -->
+                        <!-- <span>미세먼지 정보가 없습니다.</span> -->     
+                        <span class="pollution_num">72.29<span class="unit">㎍/㎥</span></span>
+                        <span class="status">Fair</span>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>

@@ -1,23 +1,26 @@
 //검색창 input 값 element
-// const searchInput = document.getElementById('location');
+const searchInput = document.getElementById('location');
 
 //검색 버튼 element
-//const searchButton = document.getElementById('search');
+const searchButton = document.getElementById('searchButton');
 
 //대기오염 정보 보여주는 element
 const airPollutionInfoHTML = document.getElementById('air-pollution-info');
 
+//대기오염 정보 보여주는 element - mobile
+const airPollutionInfoMobileHTML = document.getElementById('air-pollution-info-mobile')
+
 //'Enter' key 눌렀을 때 이벤트(검색)
-// searchInput.addEventListener('keydown', async (event) => {
-//   if(event.key === 'Enter') {
-//     searchButton.click();
-//   }
-// })
+searchInput.addEventListener('keydown', async (event) => {
+  if(event.key === 'Enter') {
+    searchButton.click();
+  }
+})
 
 //검색 버튼 클릭 했을 때 이벤트(검색)
 searchButton.addEventListener('click', async() => {
   //const city = searchInput.value.trim();
-  const city = locationInput.value.trim();
+  const city = searchInput.value.trim();
   if (!city) {
     alert('도시 이름을 입력해 주세요.', {
         title: '알림',
@@ -47,7 +50,10 @@ searchButton.addEventListener('click', async() => {
         const pollutionLevels = ['good', 'fair', 'moderate', 'poor', 'very_poor'];
         for (let level of pollutionLevels) {
             const element = document.getElementsByClassName('pollution ' + level)[0];
+            const element2 = document.getElementsByClassName('pollution ' + level)[0]
+            console.log('element2', element2.classList)
             element.classList.remove('on');
+            element2.classList.remove('on');
         }
     }
 
@@ -115,6 +121,7 @@ async function getCoordinatesInfo(city) {
 function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollutionInfoHTML) {
   const pollutionLevels = ['good', 'fair', 'moderate', 'poor', 'very_poor'];
   let html = '';
+  let html2 = '';
   const renderLevels = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor']
 
       for(let i=0; pollutionLevels.length > i; i++) {
@@ -122,14 +129,15 @@ function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollu
         let renderLevel = renderLevels[i]
         html += `<div class="pollution ${level}`;
         if (airPollutionIndicator === level) {
-            html += ' on"><span class="pollution_num">' + airPollutionNum + ' <span class="unit">㎍/㎥</span></span>';
+          html += ` on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span>`;
+          html2 += `<div class="pollution ${level} on"><span class="pollution_num">${airPollutionNum}<span class="unit">㎍/㎥</span></span>`;
         } else {
-            html += '">';
+          html += `">`;
         }
         html += `<span class="status">${renderLevel}</span></div>`;
-
+        html2 += `<span class="status">${renderLevel}</span></div>`;
       }
-
   airPollutionInfoHTML.innerHTML = html;
+  airPollutionInfoMobileHTML.innerHTML = html2;
 }
 
