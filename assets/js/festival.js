@@ -110,7 +110,6 @@ const festivalList = [
 ];
 
 
-let searchBtn = document.querySelector('.search_btn');
 let today = new Date();
 let year = today.getFullYear(); 
 let month = (`0` + (today.getMonth() + 1)).slice(-2);
@@ -118,13 +117,6 @@ let date = (`0` + today.getDate()).slice(-2);
 let todayDate = year + '.' + month + '.' + date;
 let fillterList = [];
 let keyword = '';
-
-searchBtn.addEventListener('click', function() {
-    let locationKeyword = document.querySelector('#location').value;
-    keyword = locationKeyword;
-    festivalData();
-    swiperRender();
-});
 
 
 const swiperRender= () => {
@@ -219,7 +211,9 @@ let festivialListTag = document.querySelector('#festivial_list');
     festivialListTag.innerHTML = listHtml;
 }
 
-const festivalData = () => {
+const festivalData = (inputValue) => {
+    keyword = inputValue;
+
     listFilter();
     festivalRender();
     swiperRender();
