@@ -42,7 +42,7 @@ let locationInput, searchButton;
       // styling rendering
 
       // airPollution rendering
-
+      getPollutionInfo(coordinates.lat, coordinates.lon)
       // festival renndering
       
 
@@ -55,3 +55,26 @@ let locationInput, searchButton;
       });
     }
   });
+
+//유저의 현재 위치에 맞게 현재날씨를 보여줌
+const userposition = async (position) => {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    console.log("현재 위치", lat, lng);
+    await currentweather(lat, lng);
+    await getPollutionInfo(lat,lng);
+};
+
+const userpositionError = () => {
+    alert("현재 위치를 찾을 수 없습니다");
+};
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(userposition, userpositionError);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+};
+
+getLocation();

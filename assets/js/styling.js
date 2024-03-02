@@ -477,23 +477,23 @@ const currenterrorRender=(errorMessage)=>{
 }
 
 //유저의 현재 위치에 맞게 현재날씨를 보여줌
-const userposition = (position) => {
-    const lat = position.coords.latitude;
-    const lng = position.coords.longitude;
-    console.log("현재 위치", lat, lng);
-    currentweather(lat, lng);
-};
+// const userposition = (position) => {
+//     const lat = position.coords.latitude;
+//     const lng = position.coords.longitude;
+//     console.log("현재 위치", lat, lng);
+//     currentweather(lat, lng);
+// };
 
-const userpositionError = () => {
-    alert("현재 위치를 찾을 수 없습니다");
-};
+// const userpositionError = () => {
+//     alert("현재 위치를 찾을 수 없습니다");
+// };
 
-const getLocation = () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(userposition, userpositionError);
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
-};
+// const getLocation = () => {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(userposition, userpositionError);
+//     } else {
+//         console.log("Geolocation is not supported by this browser.");
+//     }
+// };
 
-getLocation();
+// getLocation();
