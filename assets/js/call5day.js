@@ -2,10 +2,6 @@ let weatherInfoElement;
 
 weatherInfoElement = document.getElementById('weather-info');
 
-async function call5DayRender(data) {
-  const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-  renderWeather(weatherData, weatherInfoElement);
-}
 
 
 async function getCoordinates(city) {
@@ -43,9 +39,15 @@ function aggregateDailyData(list) {
   // Initialize an object to hold our aggregated data
   const dailyData = {};
 
+  // Get today's date formatted as YYYY-MM-DD
+  const today = new Date().toISOString().split('T')[0];
+
   // Process each weather data entry
   list.forEach(item => {
     const date = item.dt_txt.split(' ')[0];
+
+    // Skip entries for today's date
+    if (date === today) return;
 
     // Create a new entry if one does not exist for this date
     if (!dailyData[date]) {
