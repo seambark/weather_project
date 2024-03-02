@@ -2,10 +2,6 @@ let weatherInfoElement;
 
 weatherInfoElement = document.getElementById('weather-info');
 
-async function call5DayRender(data) {
-  const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-  renderWeather(weatherData, weatherInfoElement);
-}
 
 
 async function getCoordinates(city) {
