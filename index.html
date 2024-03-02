@@ -25,7 +25,7 @@
             <button class="search_btn" id="searchButton"  onclick="locationinput()">검색</button>
         </div>
     </header>
-    <div class="banner bg_few_clouds" id ="current"> 
+    <div class="banner no_data" id ="current"> 
         <!-- 
             banner클래스는 그대로 유지한 상태로9종류 클래스 추가 변경
             bg_clear_sky, bg_few_clouds, bg_scattered_clouds, 
@@ -40,8 +40,8 @@
             </div>
             <div class="action_txt">
                 <!-- 데이터 텍스트 영역 --> 
-                <div class="day_weather">
-                    <div class="temp">
+                <div class="day_weather"> <!-- 이안에 데이터를 넣으면 됩니다. -->
+                    <!-- <div class="temp">
                         <strong class="temp_num">7.01</strong>
                         <span class="temp_words">Few clouds</span>
                     </div>
@@ -58,7 +58,7 @@
                             <span>Humidity</span>
                             <span>83%</span>
                         </span>
-                    </div>
+                    </div> -->
                     <!-- 데이터 없을 시
                     <div>
                         <p>날씨 정보가 없습니다.</p>
@@ -85,8 +85,8 @@
                 <div class="pollution good">
                     <span class="status">Good</span>
                 </div>
-                <div class="pollution fair on">
-                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
+                <div class="pollution fair">
+                    <!-- <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span> -->
                     <span class="status">Fair</span>
                 </div>
                 <div class="pollution moderate">
@@ -101,10 +101,10 @@
                 </div>
             </div>
             <div class="inner">
-                <h2>5일 날씨</h2>
+                <h2>6일 날씨</h2>
                 <div class="weather_list">
                 <ul id="weather-info">
-                    <li class="weather_item">
+                    <!-- <li class="weather_item">
                         <span class="date">Mon</span>
                         <div class="detail">
                             <div class="icon">
@@ -165,7 +165,7 @@
                             </p>
                             <p class="description">clear sky</p>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- 데이터 없을 시
                     <li class="no_data">
                         <p>날씨 정보가 없습니다.</p>
@@ -179,13 +179,13 @@
             <div class="inner">
                 <h2>옷차림 추천</h2>
                 <div class="clothes" id="clothes">
-                    <div class="clothes_icon">
+                    <!-- <div class="clothes_icon">
                         <img src="../assets/img/temperatura_step_01.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"맑은 날씨 따뜻한 햇살! 오늘은 피크닉 가기 좋은 날!"</p><br>
                         <p class="clothes_recommend">*추천 코디: 얇은 셔츠, 면바지, 원피스...</p>
-                    </div>
+                    </div> -->
                     <!-- 
                     <div class="no_data">
                         <p>코디 추천 정보가 없습니다.</p>
@@ -221,9 +221,9 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="/api_key.js"></script>
 <script src="/assets/js/index.js"></script>
+<script src="/assets/js/styling.js"></script>
 <script src="/assets/js/festival.js"></script>
 <script src="../assets/js/call5day.js"></script>
 <script src="/assets/js/airPollution.js"></script>
-<script src="/assets/js/styling.js"></script>
 </body>
 </html>
