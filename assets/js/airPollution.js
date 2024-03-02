@@ -66,7 +66,6 @@ function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollu
         let renderLevel = renderLevels[i]
         if(noLocation) {
           html += `<div class="pollution ${level}">`;
-          html2 += `<div class="pollution"><span>미세먼지 정보가 없습니다.</span></div>`
         } else {
           html += `<div class="pollution ${level}`;
           if (airPollutionIndicator === level) {
@@ -77,6 +76,9 @@ function renderAirPollutionInfo(airPollutionNum, airPollutionIndicator, airPollu
           }
         }
         html += `<span class="status">${renderLevel}</span></div>`;
+      }
+      if(noLocation) {
+        html2 += `<div class="pollution"><span>미세먼지 정보가 없습니다.</span></div>`
       }
   airPollutionInfoHTML.innerHTML = html;
   document.getElementById('air-pollution-info-mobile').innerHTML = html2;
