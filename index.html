@@ -22,7 +22,7 @@
         <button type="button" class="open_search">검색창 열기</button>
         <div class="input_area">
             <input type="text" class="search_bar" id="location" placeholder="오늘의 날씨를 알고싶은 지역을 입력해주세요.">
-            <button class="search_btn" id="searchButton" onclick="locationinput()">검색</button>
+            <button class="search_btn" id="searchButton"  onclick="locationinput()">검색</button>
         </div>
     </header>
     <div class="banner" id ="current"> 
@@ -65,14 +65,15 @@
                     </div>
                     -->
                 </div>
-                <!-- //데이터 텍스트 영역 --> 
-                <div class="pollution"> <!-- 데이터가 없을 시 : no_data --->
-                    <!-- 데이터 없을 시 -->
-                    <!-- <span>미세먼지 정보가 없습니다.</span> -->
-                   
-                    <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span>
-                    <span class="status">Fair</span>
-                </div>
+                <!-- //데이터 텍스트 영역 -->
+                <div id="air-pollution-info-mobile">
+                    <div class="pollution fair on"> <!-- 데이터가 없을 시 : no_data --->
+                        <!-- 데이터 없을 시 -->
+                        <!-- <span>미세먼지 정보가 없습니다.</span> -->     
+                        <span class="pollution_num">72.29<span class="unit">㎍/㎥</span></span>
+                        <span class="status">Fair</span>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -85,7 +86,6 @@
                     <span class="status">Good</span>
                 </div>
                 <div class="pollution fair">
-                    <!-- <span class="pollution_num">72.29 <span class="unit">㎍/㎥</span></span> -->
                     <span class="status">Fair</span>
                 </div>
                 <div class="pollution moderate">
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="inner">
-                <h2>6일 날씨</h2>
+                <h2>5일 날씨</h2>
                 <div class="weather_list">
                 <ul id="weather-info">
                     <!-- <li class="weather_item">

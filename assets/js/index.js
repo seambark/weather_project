@@ -38,21 +38,45 @@ searchButton.addEventListener('click', async () => {
       return;
     }
     // call 5 day rendering
-    const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-    renderWeather(weatherData, weatherInfoElement);
+    const call5DayWeatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
+    renderWeather(call5DayWeatherData, weatherInfoElement);
     // styling rendering
 
     // airPollution rendering
-
+      getPollutionInfo(coordinates.lat, coordinates.lon)
     // festival renndering
+      festivalData(city);
+      swiperRender();
 
 
+    } catch (error) {
+      console.error(error);
+      alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
+        title: '알림',
+        icon: 'warning',
+      });
+    }
+  });
 
-  } catch (error) {
-    console.error(error);
-    alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
-      title: '알림',
-      icon: 'warning',
-    });
-  }
-});
+//유저의 현재 위치에 맞게 현재날씨를 보여줌
+const userposition = async (position) => {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    console.log("현재 위치", lat, lng);
+    await currentweather(lat, lng);
+    await getPollutionInfo(lat,lng);
+};
+
+const userpositionError = () => {
+    alert("현재 위치를 찾을 수 없습니다");
+};
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(userposition, userpositionError);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+};
+
+getLocation();

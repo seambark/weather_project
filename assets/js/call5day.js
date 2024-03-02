@@ -125,8 +125,8 @@ function aggregateDailyData(list) {
 }
 
 
-function renderWeather(weatherData, weatherInfoElement) {
-  const dailyData = aggregateDailyData(weatherData.list);
+function renderWeather(call5DayWeatherData, weatherInfoElement) {
+  const dailyData = aggregateDailyData(call5DayWeatherData.list);
 
   // Map over each day and generate the HTML
   const dailyForecasts = Object.keys(dailyData).map(day => {
