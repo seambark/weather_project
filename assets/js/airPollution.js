@@ -1,5 +1,5 @@
 //검색창 input 값 element
-//const searchInput = document.getElementById('location');
+// const searchInput = document.getElementById('location');
 
 //검색 버튼 element
 //const searchButton = document.getElementById('search');
@@ -87,14 +87,14 @@ async function getAirPollutionInfo(lat, lon) {
 
   //현재 대기오염 정보 불러오는 api
   // 파라미터로 위도, 경도값 필요로함 -> getCoordinates(city)함수로 정보 가져옴
-  const airPollutionUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${config.API_KEY}`
+  const airPollutionUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${config.apikey}`
   const data = await fetch(airPollutionUrl);
   const airPollutionInfo = await data.json();
   return airPollutionInfo;
 }
 
 async function getCoordinatesInfo(city) {
-  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.API_KEY}`;
+  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
   const response = await fetch(geocodingUrl);
 
   if (!response.ok) {

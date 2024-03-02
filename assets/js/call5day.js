@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function getCoordinates(city) {
-  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${OPEN_WEATHER_API_KEY}`;
+  const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${config.apikey}`;
   const response = await fetch(geocodingUrl);
 
   if (!response.ok) {
@@ -62,7 +62,7 @@ async function getCoordinates(city) {
 }
 
 async function get5DayForecast(lat, lon) {
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=${OPEN_WEATHER_API_KEY}`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=${config.apikey}`;
   const response = await fetch(forecastUrl);
 
   if (!response.ok) {

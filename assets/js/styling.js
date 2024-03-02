@@ -1,4 +1,4 @@
-const API_KEY = `613ac7d721406d59cec6506314044e4a`;
+// const API_KEY = `613ac7d721406d59cec6506314044e4a`;
 let weather = {};
 let clothes = document.getElementById("clothes")
 let addbutton = document.getElementById("searchButton")
@@ -88,7 +88,7 @@ const locationinput= async()=>{
     try{
 const searchInput = document.getElementById("location").value
     console.log("keyword", searchInput)
-    const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=${API_KEY}`);
+    const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=${config.apikey}`);
     const weatherdata = await fetch(url)
     const data = await weatherdata.json()
  
@@ -109,7 +109,7 @@ const searchInput = document.getElementById("location").value
 //현재 날씨 렌더링
 
 const currentweather = async (latitude, longitude) => {
-    const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`);
+    const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
     const weatherdata = await fetch(url);
     const data = await weatherdata.json();
     weather = data;
