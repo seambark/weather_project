@@ -64,6 +64,7 @@ searchButton.addEventListener('click', async () => {
 
 
     // airPollution rendering
+    noLocation = false;
     getPollutionInfo(coordinates.lat, coordinates.lon)
     // festival renndering
     festivalData(city);
