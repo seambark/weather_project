@@ -106,7 +106,7 @@ function renderWeather(call5DayWeatherData, weatherInfoElement) {
     <span class="date">${new Date(day).toLocaleDateString('en-EN', { weekday: 'short' })}</span>
     <div class="detail">
         <div class="icon">
-            <img src="assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
+            <img src="../assets/img/${data.weatherIconImg}.png" alt="${data.weatherDescription}">
         </div>
         <p class="temperature"><span>${data.lowTemp.toFixed(2)} / ${data.highTemp.toFixed(2)}</span></p>
         <p class="description">${data.weatherDescription}</p>
