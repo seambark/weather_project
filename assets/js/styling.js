@@ -6,111 +6,35 @@ let currentbener =document.getElementById("current")
 let bannercurrent =document.getElementById("bannercurrent")
 
 
-//빈값이면 버튼 블락
-
-// function buttondisabled() {
-    
-//     const locationValue = document.getElementById("location").value.trim();
-//     console.log(locationValue)
-//     if (locationValue ==="" ) {
-
-//         document.getElementById('searchButton').disabled = true;
-//     } else {
-//         document.getElementById('searchButton').disabled = false;
-//     }
-// }
-
-// document.getElementById("location").addEventListener("input", buttondisabled);
-
-// buttondisabled();
-
-//->block 대신 alert 뜨게 만듦
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const locationInput = document.getElementById('location');
-//     const searchButton = document.getElementById('searchButton');
-  
-//      locationInput.addEventListener('keydown', async (event) => {
-//        if (event.key === 'Enter') {
-//          searchButton.click();
-//        }
-//      });
-  
-//      searchButton.addEventListener('click', async () => {
-//        const city = locationInput.value.trim();
-  
-//        if (!city) {
-//          alert('도시 이름을 입력해 주세요.', {
-//            title: '알림',
-//            icon: 'warning',
-//          });
-//          return;
-//        }
-
-//        try {
-//              const coordinates = await getCoordinates(city);
-//              if (!coordinates) {
-//                alert('도시를 찾을 수 없습니다.', {
-//                  title: '알림',
-//                  icon: 'warning',
-//                });
-//                return;
-//              }
-//              const weatherData = await get5DayForecast(coordinates.lat, coordinates.lon);
-//              renderWeather(weatherData, weatherInfoElement);
-//            } catch (error) {
-//              console.error(error);
-//              alert('날씨 정보를 불러오는데 실패했습니다. 다시 시도해 주세요', {
-//                title: '알림',
-//                icon: 'warning',
-//              });
-//            }
-//          });
-//      });
-  
-
-//enter 입력
-  
-// let input = document.getElementById("location");
-
-// input.addEventListener("keypress", (e)=>{
-//     if (e.key == "Enter") {
-//         e.preventDefault();
-//         addbutton.click()
-//         input.value = "";
-
-//       //  buttondisabled();
-//     }
-// }
-// );
-
 //지역 검색 날씨정보
 
-const locationinput= async()=>{
-    try{
-const searchInput = document.getElementById("location").value
-const encodedSearchInput = encodeURIComponent(searchInput);
-        console.log("keyword", searchInput);
+// 현재날씨 렌더링과 같은 함수 형태로 수정
+// const locationinput= async (latitude, longitude) => {
+//     // try{
+// // const searchInput = document.getElementById("location").value
+// // let encodedSearchInput = encodeURIComponent(searchInput);
+//         // console.log("keyword", searchInput);
         
-        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&q=${encodedSearchInput}&appid=${config.apikey}`);
+//         // 현재 날씨 렌더링과 같이 위도, 경도를 받아오는 API실행
+//         const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
 
-    const weatherdata = await fetch(url)
-    const data = await weatherdata.json()
+//     const weatherdata = await fetch(url)
+//     const data = await weatherdata.json()
  
-//잘못된 지역 검색시 에러   
-    if(data.cod ===200){
-        weather = data;
-    render();
-    clothes.style.display = "";
+// //잘못된 지역 검색시 에러   
+//    // if(data.cod ===200){
+//         weather = data;
+//     render();
+//     clothes.style.display = "";
 
-    }else if(data.cod ==="404"){
-        throw new Error(weather.message)
-    }
-    }catch(error){
-        //alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
-        //currenterrorRender(error.message)
-    }
-};
+//    // }else if(data.cod ==="404"){
+//    //     throw new Error(weather.message)
+//    // }
+//    // }catch(error){
+//    //    //alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
+//    //    //currenterrorRender(error.message)
+//    // }
+// };
 
 //현재 날씨 렌더링
 
@@ -122,8 +46,6 @@ const currentweather = async (latitude, longitude) => {
     render();
     console.log("sdsd", weather);
 };
-
-
 
     let render = () => {
 
@@ -153,7 +75,7 @@ const currentweather = async (latitude, longitude) => {
                     </div>`;
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
-if (weather.weather[0].main === "Clouds") {
+if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clouds" || weather.weather[0].main === "scattered clouds"||weather.weather[0].main === "broken clouds") {
     currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
     currentbener.classList.add("bg_few_clouds")
     weatherview = 
@@ -197,7 +119,7 @@ if (weather.weather[0].main === "Clouds") {
                             <span>${weather.main.humidity}%</span>
                         </span>
                     </div>`;
-        }else if (weather.weather[0].main === "shower rain") {
+        }else if (weather.weather[0].main === "shower rain" ||weather.weather[0].main === "Drizzle") {
             currentbener.classList.add("bg_shower_rain")
             currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
             weatherview = 
@@ -242,9 +164,22 @@ if (weather.weather[0].main === "Clouds") {
                             <span>${weather.main.humidity}%</span>
                         </span>
                     </div>`;
-        }else if(weather.weather[0].main === "Rain"){
+        }if (weather.weather[0].main === "Rain") {
             currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_mist","bg_shower_rain","bg_snow")
             currentbener.classList.add("bg_rain")
+        
+            if (weather.weather[0].description.includes("moderate rain")) { 
+            } else if (weather.weather[0].description.includes("light rain")) { 
+            } else if (weather.weather[0].description.includes("heavy intensity rain")){
+            } else if (weather.weather[0].description.includes("very heavy rain")){
+            } else if (weather.weather[0].description.includes("extreme rain")){ 
+            } else if (weather.weather[0].description.includes("freezing rain")){
+            } else if (weather.weather[0].description.includes("light intensity shower rain")){
+            } else if (weather.weather[0].description.includes("shower rain")){
+            } else if (weather.weather[0].description.includes("heavy intensity shower rain")){
+            } else if (weather.weather[0].description.includes("ragged shower rain")){
+            }
+            
             weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -308,7 +243,7 @@ if (weather.weather[0].main === "Clouds") {
                             <span>${weather.main.humidity}%</span>
                         </span>
                     </div>`;
-        }else if(weather.weather[0].main === "Fog"){
+        }else if(weather.weather[0].main === "Fog" || weather.weather[0].main === "Smoke" || weather.weather[0].main === "Haze"|| weather.weather[0].main === "Sand"|| weather.weather[0].main === "Dust"|| weather.weather[0].main === "Ash"|| weather.weather[0].main === "Squall"||weather.weather[0].main === "Tornado"){
             currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
             currentbener.classList.add("bg_mist")
             weatherview = 
@@ -363,14 +298,14 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_recommend">*추천 코디 : 자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹</p>
                     </div>`
     } else if(c.toFixed(0) >=12 && c.toFixed(0) <=16){
-        clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_01.png">
-        </div>
-        <div>
-            <h2>"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</h2>
-            <h3>추천 코디 : 자켓, 가디건, 야상, 스타킹, 청바지, 면바지</h3>
-        </div>`
+        clothes.innerHTML=`<div class="clothes_icon">
+        <img src="../assets/img/temperatura_step_03.png">
+    </div>
+    <div class="clothes_bubble">
+        <p class="clothes_phrase">"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</p><br>
+        <p class="clothes_recommend">*추천 코디 : 자켓, 가디건, 야상, 스타킹, 청바지, 면바지</p>
+    </div>
+        `
     } else if(c.toFixed(0) >=17 && c.toFixed(0) <=19){
         clothes.innerHTML=`
         <div class="clothes_icon">
@@ -386,7 +321,7 @@ if (weather.weather[0].main === "Clouds") {
                         <img src="../assets/img/temperatura_step_05.png">
                     </div>
                     <div class="clothes_bubble">
-                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_phrase">"야외활동하기 너무 좋은 날씨입니다! 간단한 산책이라도 어떨까요?"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 얇은 가디건, 긴팔, 면바지, 청바지</p>
                     </div>`
     } else if(c.toFixed(0) >=23 && c.toFixed(0) <=27){
@@ -395,7 +330,7 @@ if (weather.weather[0].main === "Clouds") {
                         <img src="../assets/img/temperatura_step_07.png">
                     </div>
                     <div class="clothes_bubble">
-                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_phrase">"무더위는 아니지만 활동하기에 더운 날씨입니다. 수분보충을 잘 해주세요"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
                     </div>`
     } else if(c.toFixed(0) >=28){
@@ -422,30 +357,8 @@ const currenterrorRender=(errorMessage)=>{
         </div>
     </div>`
 
-    clothes.style.display = "none";
-    
+    clothes.style.display = "데이터를 불러오지 못해 코디 추천이 불가능합니다";
+
 
     document.getElementById("current").innerHTML=errorHtml
 }
-
-//유저의 현재 위치에 맞게 현재날씨를 보여줌
-// const userposition = (position) => {
-//     const lat = position.coords.latitude;
-//     const lng = position.coords.longitude;
-//     console.log("현재 위치", lat, lng);
-//     currentweather(lat, lng);
-// };
-
-// const userpositionError = () => {
-//     alert("현재 위치를 찾을 수 없습니다");
-// };
-
-// const getLocation = () => {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(userposition, userpositionError);
-//     } else {
-//         console.log("Geolocation is not supported by this browser.");
-//     }
-// };
-
-// getLocation();
