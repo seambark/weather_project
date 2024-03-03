@@ -1,24 +1,25 @@
 let openSearch = document.querySelector(".open_search");
 let header = document.querySelector(".header");
 let noLocation = false;
+let isSearching = false;
 
 openSearch.addEventListener("click", function () {
   header.classList.toggle("active");
 });
 
-let locationInput, searchButton;
-
-locationInput = document.getElementById('location');
-searchButton = document.getElementById('searchButton');
-
+let locationInput = document.getElementById('location');
+let searchButton = document.getElementById('searchButton');
 
 locationInput.addEventListener('keydown', async (event) => {
-  if (event.key === 'Enter') {
+  if (event.key === 'Enter' && !isSearching) {
     searchButton.click();
   }
 });
 
 searchButton.addEventListener('click', async () => {
+  if (isSearching) return; // 이미 검색이 진행 중이면 함수 실행을 중지
+  isSearching = true; // 검색 시작
+
   const city = locationInput.value.trim();
 
   if (!city) {
@@ -26,6 +27,7 @@ searchButton.addEventListener('click', async () => {
       title: '알림',
       icon: 'warning',
     });
+    isSearching = false; // 검색 상태를 리셋
     return;
   }
 
@@ -36,6 +38,7 @@ searchButton.addEventListener('click', async () => {
         title: '알림',
         icon: 'warning',
       });
+      isSearching = false; // 검색 상태를 리셋
       return;
     }
 
@@ -61,6 +64,8 @@ searchButton.addEventListener('click', async () => {
       title: '알림',
       icon: 'warning',
     });
+  }finally {
+    isSearching = false;
   }
 });
 
