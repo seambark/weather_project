@@ -42,26 +42,7 @@ searchButton.addEventListener('click', async () => {
     fetchAndRender5DayForecast(coordinates.lat, coordinates.lon, weatherInfoElement);
 
     // styling rendering
-    const locationinput = async (latitude, longitude) => {
-      const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
-      const weatherdata = await fetch(url)
-      const data = await weatherdata.json()
-      weather = data;
-      render();
-      clothes.style.display = "";
-    };
-    locationinput(coordinates.lat, coordinates.lon);
-
-    //현재날씨 렌더링
-    const currentweather = async (latitude, longitude) => {
-      const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
-      const weatherdata = await fetch(url);
-      const data = await weatherdata.json();
-      weather = data;
-      render();
-      console.log("sdsd", weather);
-    };
-
+    currentweather(coordinates.lat, coordinates.lon)
 
     // airPollution rendering
     noLocation = false;
