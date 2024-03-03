@@ -109,15 +109,17 @@ const festivalList = [
     }
 ];
 
-
-let today = new Date();
-let year = today.getFullYear(); 
-let month = (`0` + (today.getMonth() + 1)).slice(-2);
-let date = (`0` + today.getDate()).slice(-2);
-let todayDate = year + '.' + month + '.' + date;
 let fillterList = [];
 let keyword = '';
 
+const dateFormatChange = (daydate) => {
+    let thisDate =  !daydate ? new Date() : new Date(daydate);
+    let year = thisDate.getFullYear(); 
+    let month = (`0` + (thisDate.getMonth() + 1)).slice(-2);
+    let date = (`0` + thisDate.getDate()).slice(-2);
+    
+    return year + '-' + month + '-' + date;
+}
 
 const swiperRender= () => {
     let swiper = new Swiper(".festival", {
@@ -156,10 +158,11 @@ let festivialListTag = document.querySelector('#festivial_list');
     festivalList.filter(e => {
         let dates = e.date;
         let feativalDate = dates.split(' ~ ');
-        let dateStart  = new Date(feativalDate[0]);
-        let dateEnd = new Date(feativalDate[1]);
+        let dateNow = dateFormatChange();
+        let dateStart = dateFormatChange(feativalDate[0]);
+        let dateEnd = dateFormatChange(feativalDate[1]);
     
-        if(today >= dateStart && today <= dateEnd) {
+        if(dateNow >= dateStart && dateNow <= dateEnd) {
             fillterList.push(e);
         }
     });

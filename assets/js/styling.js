@@ -87,7 +87,7 @@ let bannercurrent =document.getElementById("bannercurrent")
 //지역 검색 날씨정보
 
 const locationinput= async()=>{
-    try{
+    // try{
 const searchInput = document.getElementById("location").value
 let encodedSearchInput = encodeURIComponent(searchInput);
         console.log("keyword", searchInput);
@@ -98,18 +98,18 @@ let encodedSearchInput = encodeURIComponent(searchInput);
     const data = await weatherdata.json()
  
 //잘못된 지역 검색시 에러   
-    if(data.cod ===200){
+    // if(data.cod ===200){
         weather = data;
     render();
     clothes.style.display = "";
 
-    }else if(data.cod ==="404"){
-        throw new Error(weather.message)
-    }
-    }catch(error){
-        //alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
-        //currenterrorRender(error.message)
-    }
+    // }else if(data.cod ==="404"){
+    //     throw new Error(weather.message)
+    // }
+    // }catch(error){
+    //     //alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
+    //     //currenterrorRender(error.message)
+    // }
 };
 
 //현재 날씨 렌더링
