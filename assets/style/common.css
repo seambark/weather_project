@@ -291,6 +291,7 @@ h2 {
 	overflow: hidden;
 	flex-grow: 1;
 	width: 100%;
+	min-height: 220px;
 }
 .section:first-child h2 {
 	margin-top: 0;
@@ -310,6 +311,8 @@ footer .inner {
 footer ul {
 	display: flex;
 }
+
+
 
 /* banner 1920 * 450*/
 .banner {
@@ -634,6 +637,7 @@ footer ul {
 	position: relative;
 	width: 50%;
 	text-align: right;
+	padding-right: 35px;
 }
 .day_weather .temp_num {
 	position: relative;
@@ -660,7 +664,7 @@ footer ul {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
-	padding-left: 35px;
+	/* padding-left: 35px; */
 	text-align: left;
 }
 .day_weather .value span:first-child {
@@ -848,6 +852,9 @@ footer ul {
 /* weather_list */
 .weather_list ul {
 	display: flex;
+	min-height: 220px;
+	background-color: #e2e2e280;
+	border-radius: var(--border-radius);
 
 }
 
@@ -998,8 +1005,10 @@ footer ul {
 
 /* fashion */
 .clothes {
+	position: relative;
     display: flex;
     justify-content: space-between;
+	min-height: 150px;
     align-items: center;
     width: 100%;
 }
@@ -1071,7 +1080,8 @@ footer ul {
 @media screen and (min-width: 769px) {
 	.day_weather .temp_words {
 		text-align: left;
-		min-width: 144px;
+		min-width: 214px;
+		right: -214px;
 	}
 	.bg_thunderstorm .value {
 	color: #fff;
@@ -1529,12 +1539,10 @@ footer ul {
 @keyframes moveUpDown {
 	0%,
 	100% {
-		/* background-position: 67% -45%; */
 		transform: translateY(-0.5%);
 	}
 
 	50% {
-		/* background-position: 67% -43%; */
 		transform: translateY(0.5%);
 	}
 }
@@ -1632,7 +1640,6 @@ footer ul {
 	40% {
 		opacity: 0;
 		left: 56%;
-		/* transform: translateY(23%) scale(1.1); */
 	}
 	50% {
 		opacity: 0.7;
@@ -1660,7 +1667,6 @@ footer ul {
 	40% {
 		opacity: 0;
 		left: -9%;
-		/* transform: translateY(23%) scale(1.1); */
 	}
 	50% {
 		opacity: 0.7;
@@ -1676,64 +1682,3 @@ footer ul {
 		transform: translateY(100%) scale(0.2);
 	}
 }
-
-
-
-/* @keyframes moveCloud {
-	0% {
-		opacity: 0.7;
-		transform: translateX(0) scale(0.7);
-	}
-
-	50% {
-		transform: translateX(300%) scale(0.7);
-		opacity: 0;
-	}
-
-	100% {
-		transform: translateX(0) scale(0.7);
-		opacity: 0.7;
-	}
-}
-
-@keyframes moveCloud2 {
-
-	0%,
-	50%,
-	100% {
-		top: -90px;
-	}
-
-	25% {
-		top: -92px;
-	}
-
-	75% {
-		top: -88px;
-	}
-}
-
-@keyframes moveSun {
-	0%,
-	100% {
-		transform: translate(-56%, -12%);
-	}
-
-	50% {
-		transform: translate(-56%, -11%)
-	}
-}
-
-@keyframes upDownCloud {
-	0%,
-	50%,
-	100% {
-		transform: translate(-67%, 10%) scale(-1.2, 1.2);
-	}
-	25% {
-		transform: translate(-67%, 10.2%) scale(-1.2, 1.2);
-	}
-	75% {
-		transform: translate(-67%, 9.8%) scale(-1.2, 1.2);
-	}
-} */
