@@ -243,17 +243,29 @@ h2 {
 }
 
 .header .input_area {
+	position: relative;
 	font-size: 0;
+}
+.header .input_area::after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 25px;
+    height: 25px;
+    top: 10px;
+    left: 13px;
+	background: url("../img/icon_search.png") no-repeat left top;
+	background-size: 25px auto;
+    
 }
 
 .header .search_bar {
+	position: relative;
 	width: calc(100% - 110px);
 	padding-left: 48px;
-	background: url("../img/icon_search.png") no-repeat 13px center;
-	background-size: 25px auto;
 	vertical-align: top;
-
 }
+
 
 .header .search_btn {
 	margin-left: 10px;
@@ -1037,7 +1049,7 @@ footer ul {
     font-size: 17px;
 }
 .clothes_phrase{
-	font-size: 30px;
+	font-size: 26px;
 	font-weight: bold;
 	/* margin-bottom: 20px; */
 	line-height: 1.4em;
