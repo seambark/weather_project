@@ -152,12 +152,14 @@ table {
 }
 
 .swiper-pagination {
-	top: -35px !important;
-	right: 0;
+	visibility: hidden;
+	top: 0 !important;
+	right: 20px;
 	left: inherit;
 	bottom: inherit;
 	width: auto;
-	padding: 4px 8px;
+	min-width: 69px;
+	padding: 5px 8px 4px;
 	border-radius: 20px;
 	background-color: rgba(0, 0, 0, 0.4);
 	color: #fff;
@@ -990,11 +992,11 @@ footer ul {
     width: 100%;
 }
 .clothes_icon {
-    height: 180px;
-    width: 300px;
-    border: 2px solid #e0e0e0;
-    margin-right: 30px;
-    margin-left: 10px;
+    flex-shrink: 0;
+    width: 30%;
+    /* border: 2px solid #e0e0e0; */
+    /* margin-right: 30px; */
+    /* margin-left: 10px; */
 }
 .clothes_icon > img {
     width: 100%;
@@ -1008,11 +1010,14 @@ footer ul {
 	justify-content: center;
 	position: relative;
     height: 180px;
-    width: 900px;
-	padding: 30px 20px;
-	border-radius: .4em;
+    flex-grow: 1;
+	padding: 30px 40px;
+	border-radius: var(--border-radius);
 	background: #eeeeee;
-    text-align: left;
+	color: #3a3a3a;
+	line-height: 1.1em;
+    text-align: center;
+	word-break: keep-all;
 }
 
 .clothes_bubble:after {
@@ -1029,12 +1034,14 @@ footer ul {
 	margin-left: -25px;
 }
 .clothes_recommend{
-    font-size: 17px
+    font-size: 17px;
 }
 .clothes_phrase{
 	font-size: 30px;
 	font-weight: bold;
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
+	line-height: 1.4em;
+	
 }
 
 .currentweather{
@@ -1162,6 +1169,10 @@ footer ul {
 		top: 0;
 		left: 0;
 		z-index: 100;
+	}
+	.swiper-pagination {
+		visibility: visible;
+		font-size: 15px;
 	}
 
 	.currentweather{
@@ -1423,7 +1434,8 @@ footer ul {
 		overflow: inherit;
 	}
 	.m_pull .festival  {
-		padding: 0 20px;
+		margin-top: -48px;
+		padding: 48px 20px 0;
 	}
 	.icon_cloud.fixed {
 		left: 100%;
@@ -1455,27 +1467,38 @@ footer ul {
 	/* fashion */
 	.clothes {
 		flex-direction: column;
+		word-break: keep-all;
     }
     .clothes_icon {
 		width: 100%;
 		height: auto;
-		margin: 0 0 20px;
+		/* margin: 0 0 20px; */
 		/* display: none; */
 	}
 	.clothes_bubble {
 		width: 100%;
+		padding: 25px 0 0;
+		height: auto;
 		/* margin-left: 20px; */
+		min-height: 160px;
+		justify-content: end;
 	}
 	.clothes_bubble:after {
 		display: none;
 	}
 	.clothes_phrase {
-		font-size: 25px;
+		font-size: 21px;
 		font-weight: bold;
-		margin-bottom: 20px;
+		padding: 0 20px 20px;
 	}
 	.clothes_recommend {
 		font-size: 16px;
+		margin: 0;
+		padding: 5px 10px;
+        width: 100%;
+		background-color: #b9b9b9;
+        border-radius: 0 0 5px 5px;
+		color: #fff;
 	}
 
 	.swiper {
