@@ -77,7 +77,7 @@ const currentweather = async (latitude, longitude) => {
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
 
 if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clouds") {
-    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
+    currentbener.classList.remove("bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_snow", "bg_mist")
     currentbener.classList.add("bg_few_clouds")
     weatherview = 
     `<div class="temp">
@@ -99,7 +99,7 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
         </span>
     </div>`;
 }else if (weather.weather[0].main === "scattered clouds") {
-    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
+    currentbener.classList.remove("bg_few_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_snow", "bg_mist")
     currentbener.classList.add("bg_scattered_clouds")
     weatherview = 
     `<div class="temp">
@@ -121,7 +121,7 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
         </span>
     </div>`;}
     else if (weather.weather[0].main === "broken clouds" || weather.weather[0].main === "overcast clouds") {
-        currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
+        currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_snow", "bg_mist")
         currentbener.classList.add("bg_broken_clouds")
         weatherview = 
         `<div class="temp">
@@ -144,7 +144,7 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
         </div>`;}
 else if (weather.weather[0].main === "Clear") {
     currentbener.classList.add("bg_clear_sky")
-    currentbener.classList.remove("bg_few_clouds","bg_shower_rain","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
+    currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_snow", "bg_mist");
     weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -166,7 +166,7 @@ else if (weather.weather[0].main === "Clear") {
                     </div>`;
         }else if (weather.weather[0].main === "shower rain" ||weather.weather[0].main === "Drizzle") {
             currentbener.classList.add("bg_shower_rain")
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
+            currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_thunderstorm", "bg_rain", "bg_snow", "bg_mist");
             weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -188,7 +188,7 @@ else if (weather.weather[0].main === "Clear") {
                     </div>`;
                 }
         else if(weather.weather[0].main === "Thunderstorm"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_rain","bg_mist","bg_shower_rain","bg_snow")
+            currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_rain", "bg_snow", "bg_mist")
             currentbener.classList.add("bg_thunderstorm")
             weatherview = 
                     `<div class="temp">
@@ -209,22 +209,9 @@ else if (weather.weather[0].main === "Clear") {
                             <span>${weather.main.humidity}%</span>
                         </span>
                     </div>`;
-        }if (weather.weather[0].main === "Rain") {
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_mist","bg_shower_rain","bg_snow")
+        }else if (weather.weather[0].main === "Rain") {
+            currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_snow", "bg_mist")
             currentbener.classList.add("bg_rain")
-        
-            if (weather.weather[0].description.includes("moderate rain")) { 
-            } else if (weather.weather[0].description.includes("light rain")) { 
-            } else if (weather.weather[0].description.includes("heavy intensity rain")){
-            } else if (weather.weather[0].description.includes("very heavy rain")){
-            } else if (weather.weather[0].description.includes("extreme rain")){ 
-            } else if (weather.weather[0].description.includes("freezing rain")){
-            } else if (weather.weather[0].description.includes("light intensity shower rain")){
-            } else if (weather.weather[0].description.includes("shower rain")){
-            } else if (weather.weather[0].description.includes("heavy intensity shower rain")){
-            } else if (weather.weather[0].description.includes("ragged shower rain")){
-            }
-            
             weatherview = 
                     `<div class="temp">
                         <strong class="temp_num">${c.toFixed(0)}</strong>
@@ -245,7 +232,7 @@ else if (weather.weather[0].main === "Clear") {
                         </span>
                     </div>`;
         }else if(weather.weather[0].main === "Snow" || weather.weather[0].main === "sleet"|| weather.weather[0].main === "freezing"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain")
+            currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_mist")
             currentbener.classList.add("bg_snow")
             weatherview = 
             `<div class="temp">
@@ -267,7 +254,7 @@ else if (weather.weather[0].main === "Clear") {
                 </span>
             </div>`;
         }else if(weather.weather[0].main === "Mist"|| weather.weather[0].main === "Fog" || weather.weather[0].main === "Smoke" || weather.weather[0].main === "Haze"|| weather.weather[0].main === "Sand"|| weather.weather[0].main === "Dust"|| weather.weather[0].main === "Ash"|| weather.weather[0].main === "Squall"||weather.weather[0].main === "Tornado"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
+            currentbener.classList.remove("bg_few_clouds", "bg_scattered_clouds", "bg_broken_clouds", "bg_clear_sky", "bg_shower_rain", "bg_thunderstorm", "bg_rain", "bg_snow")
             currentbener.classList.add("bg_mist")
             weatherview = 
                     `<div class="temp">
