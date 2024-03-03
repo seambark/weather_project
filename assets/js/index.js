@@ -42,31 +42,15 @@ searchButton.addEventListener('click', async () => {
     fetchAndRender5DayForecast(coordinates.lat, coordinates.lon, weatherInfoElement);
 
     // styling rendering
-    const locationinput = async () => {
-      // try{
-      const searchInput = document.getElementById("location").value
-      const encodedSearchInput = encodeURIComponent(searchInput);
-      console.log("keyword", searchInput);
-
-      const url = new URL(`https://api.openweathermap.org/data/2.5/weather?q=${encodedSearchInput}&appid=${config.apikey}`);
-
+    const locationinput = async (latitude, longitude) => {
+      const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
       const weatherdata = await fetch(url)
       const data = await weatherdata.json()
-
-      //잘못된 지역 검색시 에러   
-      // if(data.cod ===200){
       weather = data;
       render();
       clothes.style.display = "";
-
-      // }else if(data.cod ==="404"){
-      //     throw new Error(weather.message)
-      // }
-      // }catch(error){
-      //     alert("지역을 찾을 수 없습니다. 정확한 지역명을 입력해주세요")
-      //     //currenterrorRender(error.message)
-      // }
     };
+    locationinput(coordinates.lat, coordinates.lon);
 
     //현재날씨 렌더링
     const currentweather = async (latitude, longitude) => {
@@ -78,8 +62,6 @@ searchButton.addEventListener('click', async () => {
       console.log("sdsd", weather);
     };
 
-
-    //여기까지
 
     // airPollution rendering
     getPollutionInfo(coordinates.lat, coordinates.lon)

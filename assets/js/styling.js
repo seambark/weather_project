@@ -86,13 +86,15 @@ let bannercurrent =document.getElementById("bannercurrent")
 
 //지역 검색 날씨정보
 
-const locationinput= async()=>{
+// 현재날씨 렌더링과 같은 함수 형태로 수정
+const locationinput= async (latitude, longitude) => {
     // try{
-const searchInput = document.getElementById("location").value
-let encodedSearchInput = encodeURIComponent(searchInput);
-        console.log("keyword", searchInput);
+// const searchInput = document.getElementById("location").value
+// let encodedSearchInput = encodeURIComponent(searchInput);
+        // console.log("keyword", searchInput);
         
-        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&q=${encodedSearchInput}&appid=${config.apikey}&lang=kr`);
+        // 현재 날씨 렌더링과 같이 위도, 경도를 받아오는 API실행
+        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${config.apikey}`);
 
     const weatherdata = await fetch(url)
     const data = await weatherdata.json()
