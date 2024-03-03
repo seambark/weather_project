@@ -85,7 +85,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     if(c.toFixed(0) <=4){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_01.png">
+                        <img src="assets/img/temperatura_step_01.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"매우 추운 날이네요! 두꺼운 아우터입고 체온을 따뜻히 유지하세요"</p><br>
@@ -94,7 +94,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     }else if(c.toFixed(0) >=5 && c.toFixed(0) <=8){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_02.png">
+                        <img src="assets/img/temperatura_step_02.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"큰 추위 없는 날씨네요! 하지만 외출 시 보온에 신경 써주세요"</p><br>
@@ -103,7 +103,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     } else if(c.toFixed(0) >=9 && c.toFixed(0) <=11){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_03.png">
+                        <img src="assets/img/temperatura_step_03.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"약간 쌀쌀하지만 활동하기 좋은 날이네요! 오늘의 추천 코디는"</p><br>
@@ -111,7 +111,7 @@ currentbener.classList.add(`bg_${variousweather}`);
                     </div>`
     } else if(c.toFixed(0) >=12 && c.toFixed(0) <=16){
         clothes.innerHTML=`<div class="clothes_icon">
-        <img src="../assets/img/temperatura_step_03.png">
+        <img src="assets/img/temperatura_step_03.png">
     </div>
     <div class="clothes_bubble">
         <p class="clothes_phrase">"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</p><br>
@@ -121,7 +121,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     } else if(c.toFixed(0) >=17 && c.toFixed(0) <=19){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_06.png">
+                        <img src="assets/img/temperatura_step_06.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"완전한 봄, 가을 날씨입니다! 오늘의 코디는"</p><br>
@@ -130,7 +130,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     } else if(c.toFixed(0) >=20 && c.toFixed(0) <=22){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_05.png">
+                        <img src="assets/img/temperatura_step_05.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"야외활동하기 너무 좋은 날씨입니다! 간단한 산책이라도 어떨까요?"</p><br>
@@ -139,7 +139,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     } else if(c.toFixed(0) >=23 && c.toFixed(0) <=27){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_07.png">
+                        <img src="assets/img/temperatura_step_07.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"무더위는 아니지만 활동하기에 더운 날씨입니다. 수분보충을 잘 해주세요"</p><br>
@@ -148,7 +148,7 @@ currentbener.classList.add(`bg_${variousweather}`);
     } else if(c.toFixed(0) >=28){
         clothes.innerHTML=`
         <div class="clothes_icon">
-                        <img src="../assets/img/temperatura_step_08.png">
+                        <img src="assets/img/temperatura_step_08.png">
                     </div>
                     <div class="clothes_bubble">
                         <p class="clothes_phrase">"매우 더운 날씨입니다! 외출을 자제하시고 온열질환 조심하세요"</p><br>
