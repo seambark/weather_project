@@ -75,7 +75,8 @@ const currentweather = async (latitude, longitude) => {
                     </div>`;
         
 // 날씨에 따라 이미지, 아이콘 바뀌는 기능
-if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clouds" || weather.weather[0].main === "scattered clouds"||weather.weather[0].main === "broken clouds") {
+
+if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clouds") {
     currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
     currentbener.classList.add("bg_few_clouds")
     weatherview = 
@@ -97,7 +98,51 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
             <span>${weather.main.humidity}%</span>
         </span>
     </div>`;
-}else if (weather.weather[0].main === "Clear") {
+}else if (weather.weather[0].main === "scattered clouds") {
+    currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
+    currentbener.classList.add("bg_scattered_clouds")
+    weatherview = 
+    `<div class="temp">
+        <strong class="temp_num">${c.toFixed(0)}</strong>
+        <span class="temp_words">${weather.weather[0].main}</span>
+    </div>
+    <div class="value">
+        <span>${weather.name}</span>
+        <span>${currentMonth}&nbsp${currentDate}</span>
+    </div>
+    <div class="other">
+        <span class="wind">
+            <span>Wind</span>
+            <span>${weather.wind.speed}</span>
+        </span>
+        <span class="humidity">
+            <span>Humidity</span>
+            <span>${weather.main.humidity}%</span>
+        </span>
+    </div>`;}
+    else if (weather.weather[0].main === "broken clouds" || weather.weather[0].main === "overcast clouds") {
+        currentbener.classList.remove("bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow","bg_mist")
+        currentbener.classList.add("bg_broken_clouds")
+        weatherview = 
+        `<div class="temp">
+            <strong class="temp_num">${c.toFixed(0)}</strong>
+            <span class="temp_words">${weather.weather[0].main}</span>
+        </div>
+        <div class="value">
+            <span>${weather.name}</span>
+            <span>${currentMonth}&nbsp${currentDate}</span>
+        </div>
+        <div class="other">
+            <span class="wind">
+                <span>Wind</span>
+                <span>${weather.wind.speed}</span>
+            </span>
+            <span class="humidity">
+                <span>Humidity</span>
+                <span>${weather.main.humidity}%</span>
+            </span>
+        </div>`;}
+else if (weather.weather[0].main === "Clear") {
     currentbener.classList.add("bg_clear_sky")
     currentbener.classList.remove("bg_few_clouds","bg_shower_rain","bg_thunderstorm","bg_rain","bg_mist","bg_snow");
     weatherview = 
@@ -199,7 +244,7 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
                             <span>${weather.main.humidity}%</span>
                         </span>
                     </div>`;
-        }else if(weather.weather[0].main === "Snow"){
+        }else if(weather.weather[0].main === "Snow" || weather.weather[0].main === "sleet"|| weather.weather[0].main === "freezing"){
             currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain")
             currentbener.classList.add("bg_snow")
             weatherview = 
@@ -221,29 +266,7 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
                     <span>${weather.main.humidity}%</span>
                 </span>
             </div>`;
-        }else if(weather.weather[0].main === "Mist"){
-            currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
-            currentbener.classList.add("bg_mist")
-            weatherview = 
-                    `<div class="temp">
-                        <strong class="temp_num">${c.toFixed(0)}</strong>
-                        <span class="temp_words">${weather.weather[0].main}</span>
-                    </div>
-                    <div class="value">
-                        <span>${weather.name}</span>
-                        <span>${currentMonth}&nbsp${currentDate}</span>
-                    </div>
-                    <div class="other">
-                        <span class="wind">
-                            <span>Wind</span>
-                            <span>${weather.wind.speed}</span>
-                        </span>
-                        <span class="humidity">
-                            <span>Humidity</span>
-                            <span>${weather.main.humidity}%</span>
-                        </span>
-                    </div>`;
-        }else if(weather.weather[0].main === "Fog" || weather.weather[0].main === "Smoke" || weather.weather[0].main === "Haze"|| weather.weather[0].main === "Sand"|| weather.weather[0].main === "Dust"|| weather.weather[0].main === "Ash"|| weather.weather[0].main === "Squall"||weather.weather[0].main === "Tornado"){
+        }else if(weather.weather[0].main === "Mist"|| weather.weather[0].main === "Fog" || weather.weather[0].main === "Smoke" || weather.weather[0].main === "Haze"|| weather.weather[0].main === "Sand"|| weather.weather[0].main === "Dust"|| weather.weather[0].main === "Ash"|| weather.weather[0].main === "Squall"||weather.weather[0].main === "Tornado"){
             currentbener.classList.remove("bg_few_clouds","bg_clear_sky","bg_shower_rain","bg_thunderstorm","bg_rain","bg_snow")
             currentbener.classList.add("bg_mist")
             weatherview = 
@@ -267,7 +290,6 @@ if (weather.weather[0].main === "Clouds" || weather.weather[0].main === "few_clo
                     </div>`;
         };
         
-    
 
 //기온에 따라 옷추천
     if(c.toFixed(0) <=4){
