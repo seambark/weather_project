@@ -71,34 +71,13 @@ function aggregateDailyData(list) {
     data.avgPressure = total(data.pressureValues) / data.pressureValues.length;
 
     // Determine the most frequent weather description and icon
-    const mistConditions = ['mist', 'smoke', 'haze', 'sand/dust whirls', 'fog', 'sand', 'dust', 'volcanic ash', 'squalls', 'tornado'];
-    const rainConditions = ['light rain', 'moderate rain', 'heavy intensity rain', 'very heavy rain', 'extreme rain'];
-
     const mostFrequent = (array) => array.sort((a, b) =>
-      array.filter(v => v === a).length
-      - array.filter(v => v === b).length)
-      .pop();
+    array.filter(v => v === a).length
+    - array.filter(v => v === b).length)
+    .pop();
     data.weatherDescription = mostFrequent(data.weatherDescriptions);
     data.weatherIcon = mostFrequent(data.weatherIcons);
-    if (data.weatherDescription === 'clear sky') {
-      data.weatherIconImg = 'clear_sky';
-    } else if (data.weatherDescription === 'few clouds') {
-      data.weatherIconImg = 'few_clouds';
-    } else if (data.weatherDescription === 'scattered clouds') {
-      data.weatherIconImg = 'scattered_clouds';
-    } else if (data.weatherDescription === 'broken clouds' | data.weatherDescription === 'overcast clouds') {
-      data.weatherIconImg = 'broken_clouds';
-    } else if (data.weatherDescription === 'shower rain' | data.weatherDescription.includes('Drizzle')) {
-      data.weatherIconImg = 'shower_rain';
-    } else if (data.weatherDescription === 'rain' | rainConditions.some(condition => data.weatherDescription.includes(condition))) {
-      data.weatherIconImg = 'rain';
-    } else if (data.weatherDescription.includes('thunderstorm')) {
-      data.weatherIconImg = 'thunderstorm';
-    } else if (data.weatherDescription.includes('snow') | data.weatherDescription.includes('sleet') | data.weatherDescription.includes('freezing')) {
-      data.weatherIconImg = 'snow';
-    } else if (mistConditions.some(condition => data.weatherDescription.includes(condition))) {
-      data.weatherIconImg = 'mist';
-    }
+    data.weatherIconImg = weatherConditions(data.weatherDescription);
 
   });
 
