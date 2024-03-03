@@ -89,10 +89,10 @@ let bannercurrent =document.getElementById("bannercurrent")
 const locationinput= async()=>{
     try{
 const searchInput = document.getElementById("location").value
-const encodedSearchInput = encodeURIComponent(searchInput);
+let encodedSearchInput = encodeURIComponent(searchInput);
         console.log("keyword", searchInput);
         
-        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&q=${encodedSearchInput}&appid=${config.apikey}`);
+        const url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&q=${encodedSearchInput}&appid=${config.apikey}&lang=kr`);
 
     const weatherdata = await fetch(url)
     const data = await weatherdata.json()
@@ -363,14 +363,14 @@ if (weather.weather[0].main === "Clouds") {
                         <p class="clothes_recommend">*추천 코디 : 자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹</p>
                     </div>`
     } else if(c.toFixed(0) >=12 && c.toFixed(0) <=16){
-        clothes.innerHTML=`
-        <div>
-        <img src="../assets/img/temperatura_step_01.png">
-        </div>
-        <div>
-            <h2>"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</h2>
-            <h3>추천 코디 : 자켓, 가디건, 야상, 스타킹, 청바지, 면바지</h3>
-        </div>`
+        clothes.innerHTML=`<div class="clothes_icon">
+        <img src="../assets/img/temperatura_step_03.png">
+    </div>
+    <div class="clothes_bubble">
+        <p class="clothes_phrase">"나들이하기 좋은 날이네요! 계절이 바뀌는 만큼 감기 조심하세요"</p><br>
+        <p class="clothes_recommend">*추천 코디 : 자켓, 가디건, 야상, 스타킹, 청바지, 면바지</p>
+    </div>
+        `
     } else if(c.toFixed(0) >=17 && c.toFixed(0) <=19){
         clothes.innerHTML=`
         <div class="clothes_icon">
@@ -386,7 +386,7 @@ if (weather.weather[0].main === "Clouds") {
                         <img src="../assets/img/temperatura_step_05.png">
                     </div>
                     <div class="clothes_bubble">
-                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_phrase">"야외활동하기 너무 좋은 날씨입니다! 간단한 산책이라도 어떨까요?"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 얇은 가디건, 긴팔, 면바지, 청바지</p>
                     </div>`
     } else if(c.toFixed(0) >=23 && c.toFixed(0) <=27){
@@ -395,7 +395,7 @@ if (weather.weather[0].main === "Clouds") {
                         <img src="../assets/img/temperatura_step_07.png">
                     </div>
                     <div class="clothes_bubble">
-                        <p class="clothes_phrase">"멘트??"</p><br>
+                        <p class="clothes_phrase">"무더위는 아니지만 활동하기에 더운 날씨입니다. 수분보충을 잘 해주세요"</p><br>
                         <p class="clothes_recommend">*추천 코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
                     </div>`
     } else if(c.toFixed(0) >=28){
@@ -422,8 +422,8 @@ const currenterrorRender=(errorMessage)=>{
         </div>
     </div>`
 
-    clothes.style.display = "none";
-    
+    clothes.style.display = "데이터를 불러오지 못해 코디 추천이 불가능합니다";
+
 
     document.getElementById("current").innerHTML=errorHtml
 }
