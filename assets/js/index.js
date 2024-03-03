@@ -127,7 +127,7 @@ const weatherConditions = (condition) => {
     conditionIcon = 'scattered_clouds';
   } else if (condition === 'broken clouds' || condition === 'overcast clouds') {
     conditionIcon = 'broken_clouds';
-  } else if (condition === 'shower rain' || condition.includes('Drizzle')) {
+  } else if (condition === 'shower rain' || condition.includes('drizzle')) {
     conditionIcon = 'shower_rain';
   } else if (condition === 'rain' || rainConditions.some(c => condition.includes(c))) {
     conditionIcon = 'rain';
