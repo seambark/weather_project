@@ -129,13 +129,13 @@ const weatherConditions = (condition) => {
     conditionIcon = 'broken_clouds';
   } else if (condition === 'shower rain' || condition.includes('Drizzle')) {
     conditionIcon = 'shower_rain';
-  } else if (condition === 'rain' || rainConditions.some(c => c.includes(condition))) {
+  } else if (condition === 'rain' || rainConditions.some(c => condition.includes(c))) {
     conditionIcon = 'rain';
   } else if (condition.includes('thunderstorm')) {
     conditionIcon = 'thunderstorm';
   } else if (condition.includes('snow') || condition.includes('sleet') || condition.includes('freezing')) {
     conditionIcon = 'snow';
-  } else if (mistConditions.some(c => c.includes(condition))) {
+  } else if (mistConditions.some(c => condition.includes(c))) {
     conditionIcon = 'mist';
   }
 
