@@ -293,6 +293,9 @@ h2 {
 	width: 100%;
 	min-height: 220px;
 }
+section.m_pull .inner {
+	min-height: inherit;
+}
 .section:first-child h2 {
 	margin-top: 0;
 }
@@ -1195,6 +1198,9 @@ footer ul {
 	.swiper-pagination {
 		visibility: visible;
 		font-size: 15px;
+	}
+	.section .inner {
+		min-height: inherit;
 	}
 
 	.currentweather{
