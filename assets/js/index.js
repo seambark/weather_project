@@ -38,6 +38,9 @@ searchButton.addEventListener('click', async () => {
       });
       return;
     }
+
+    noLocation = false;
+
     // call 5 day rendering
     fetchAndRender5DayForecast(coordinates.lat, coordinates.lon, weatherInfoElement);
 
@@ -45,8 +48,8 @@ searchButton.addEventListener('click', async () => {
     currentweather(coordinates.lat, coordinates.lon)
 
     // airPollution rendering
-    noLocation = false;
     getPollutionInfo(coordinates.lat, coordinates.lon)
+    
     // festival renndering
     festivalData(city);
     swiperRender();
