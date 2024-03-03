@@ -106,4 +106,32 @@ const getLocation = () => {
   }
 };
 
+const weatherConditions = (condition) => {
+  const mistConditions = ['mist', 'smoke', 'haze', 'sand/dust whirls', 'fog', 'sand', 'dust', 'volcanic ash', 'squalls', 'tornado'];
+  const rainConditions = ['light rain', 'moderate rain', 'heavy intensity rain', 'very heavy rain', 'extreme rain'];
+  let conditionIcon;
+
+  if (condition === 'clear sky') {
+    conditionIcon = 'clear_sky';
+  } else if (condition === 'few clouds') {
+    conditionIcon = 'few_clouds';
+  } else if (condition === 'scattered clouds') {
+    conditionIcon = 'scattered_clouds';
+  } else if (condition === 'broken clouds' | condition === 'overcast clouds') {
+    conditionIcon = 'broken_clouds';
+  } else if (condition === 'shower rain' | condition.includes('Drizzle')) {
+    conditionIcon = 'shower_rain';
+  } else if (condition === 'rain' | rainConditions.some(c => c.includes(c))) {
+    conditionIcon = 'rain';
+  } else if (condition.includes('thunderstorm')) {
+    conditionIcon = 'thunderstorm';
+  } else if (condition.includes('snow') | condition.includes('sleet') | condition.includes('freezing')) {
+    conditionIcon = 'snow';
+  } else if (mistConditions.some(c => c.includes(c))) {
+    conditionIcon = 'mist';
+  }
+
+  return conditionIcon;
+}
+
 getLocation();
