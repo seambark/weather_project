@@ -499,7 +499,10 @@ footer ul {
 	opacity: 1;
 	animation: 1s linear infinite comeDown;
 }
-
+.bg_shower_rain .day_weather .temp,
+.bg_shower_rain .day_weather .temp_words {
+	color: #fff;
+}
 .bg_rain .action_space {
 	background-image: url("../img/banner/rain_3D.png");
 	background-size: 310px auto;
@@ -1079,6 +1082,14 @@ footer ul {
 .bg_thunderstorm .day_weather .temp_words {
 	color: #fff;
 }
+.bg_scattered_clouds .temp_num {
+	color: #fff;
+	/* text-shadow: -1px 0 #c7c7c7, 0 1px #c7c7c7, 1px 0 #c7c7c7, 0 -1px #c7c7c7; */
+	text-shadow: 1px 1px 9px #77869d;
+}
+.bg_scattered_clouds .day_weather .temp_words {
+	color: #fff;
+}
 
 @media screen and (min-width: 769px) {
 	.day_weather .temp_words {
@@ -1086,12 +1097,27 @@ footer ul {
 		min-width: 214px;
 		right: -214px;
 	}
+	.bg_scattered_clouds .value {
+		color: #fff;
+		text-shadow: 1px 1px 9px #8e9bae;
+	}
+	.bg_scattered_clouds .other {
+		color: #465c6f;
+	}
 	.bg_thunderstorm .value {
 	color: #fff;
 	}
 	.bg_thunderstorm .other {
 		color: #465c6f;
 	}
+	.bg_shower_rain .value {
+		color: #fff;
+	}
+	
+	.bg_shower_rain .other {
+		color: #495967;
+	}
+	
 }
 
 @media screen and (max-width: 1023px) {
@@ -1288,13 +1314,16 @@ footer ul {
 	.action_space {
 		overflow: hidden;
 	}
-
+	.bg_clear_sky .action_space {
+		background-size: 300px auto;
+		background-position: 77% 40%;
+	}
 	.bg_clear_sky .action_space::before {
 		background-position: center;
 	}
 	.bg_few_clouds .action_space {
 		background-size: 300px auto;
-		background-position: 110% 0;
+		background-position: 110% 25%;
 	}
 	.bg_few_clouds .action_space::before,
 	.bg_scattered_clouds .action_space::before,
@@ -1322,17 +1351,32 @@ footer ul {
 	}
 	.bg_scattered_clouds .action_space {
 		background-size: 340px auto;
-		background-position: 60% 20%;
+		background-position: 60% 40%;
 	}
 	.bg_broken_clouds {
 		background-image: none;
 	}
 	.bg_broken_clouds .action_space {
 		background-size: 310px auto;
-		background-position: 65% 25%;
+		background-position: 65% 40%;
+	}
+	.bg_shower_rain .action_space {
+		background-position: 78% 30%;
+	}
+	.bg_shower_rain .pollution {
+		color: #676358;
+	}
+	.bg_shower_rain .status {
+		color: #4c4d55;
+	}
+	.bg_rain .action_space {
+		background-position: 77% 45%;
 	}
 	.bg_thunderstorm.banner .pollution {
 		color: #495967;
+	}
+	.bg_thunderstorm .action_space {
+		background-position: 80% 24%;
 	}
 	.bg_thunderstorm .action_space::after {
 		width: 100%;
@@ -1345,12 +1389,15 @@ footer ul {
 		animation: 1s 0.5s linear infinite comeDown;
 		/* animation: 1.5s linear infinite lightningM; */
 	}
+	.bg_snow .action_space {
+		background-position: 77% 35%;
+	}
 	.bg_mist {
 		background-image: none;
 	}
 	.bg_mist .action_space {
 		background-size: 320px auto;
-		background-position: 65% 27%;
+		background-position: 65% 37%;
 	}
 	
 	.day_weather {
@@ -1360,9 +1407,12 @@ footer ul {
 	.day_weather .temp {
 		text-align: center;
 		width: 70%;
+		margin-top: 45px;
+		padding-right: 0;
 	}
 	.day_weather .temp_num {
 		position: relative;
+		margin-left: -12px;
 		padding-top: 0;
 		font-size: 80px;
 	}
