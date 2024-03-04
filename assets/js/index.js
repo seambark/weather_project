@@ -2,6 +2,7 @@ let openSearch = document.querySelector(".open_search");
 let header = document.querySelector(".header");
 let noLocation = false;
 let isSearching = false;
+let defaultPlace = '서울';
 
 openSearch.addEventListener("click", function () {
   header.classList.toggle("active");
@@ -42,7 +43,7 @@ searchButton.addEventListener('click', async () => {
       return;
     }
 
-    noLocation = false;
+    // noLocation = false;
 
     // call 5 day rendering
     fetchAndRender5DayForecast(coordinates.lat, coordinates.lon, weatherInfoElement);
@@ -68,6 +69,23 @@ searchButton.addEventListener('click', async () => {
     isSearching = false;
   }
 });
+
+const searchData = async(place) => {
+  const defaultData = await getCoordinates(place);
+
+  // call 5 day rendering
+  fetchAndRender5DayForecast(defaultData.lat, defaultData.lon, weatherInfoElement);
+
+  // styling rendering
+  currentweather(defaultData.lat, defaultData.lon)
+
+  // airPollution rendering
+  getPollutionInfo(defaultData.lat, defaultData.lon)
+
+  // festival renndering
+  festivalData(place);
+  swiperRender();
+}
 
 
 // 도시를 검색하면 도시의 위도, 경도를 알려줌
@@ -95,6 +113,7 @@ async function getCoordinates(city) {
 const userposition = async (position) => {
   const lat = position.coords.latitude;
   const lng = position.coords.longitude;
+
   console.log("현재 위치", lat, lng);
   await currentweather(lat, lng);
   await fetchAndRender5DayForecast(lat, lng, weatherInfoElement)
@@ -102,8 +121,8 @@ const userposition = async (position) => {
 };
 
 const userpositionError = () => {
-  alert("현재 위치를 찾을 수 없습니다");
-  noLocation = true;
+  alert("현재 위치를 찾을 수 없습니다.\n서울 위치를 기본으로 지정하여 날씨를 보여줍니다.");
+  searchData(defaultPlace);
 };
 
 const getLocation = () => {
