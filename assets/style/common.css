@@ -1094,8 +1094,8 @@ footer ul {
 @media screen and (min-width: 769px) {
 	.day_weather .temp_words {
 		text-align: left;
-		min-width: 214px;
-		right: -214px;
+		min-width: 421px;
+		right: -421px;
 	}
 	.bg_scattered_clouds .value {
 		color: #fff;
